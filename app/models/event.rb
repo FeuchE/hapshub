@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   belongs_to :group
-  belongs_to :adventure
+  belongs_to :adventure, optional: true
   has_many :adventures
   has_many :notifications, dependent: :destroy
 
@@ -13,9 +13,10 @@ class Event < ApplicationRecord
   validate :end_time_after_start_time
   validate :start_time_in_future
   validates :image_url, presence: true
-  validates :category, presence: true, inclusion: { in: %w[Food Drinks Music Museums Sports Art Nature] }
+  validates :category, presence: true, inclusion: { in: %w[food drinks music museums sports art nature] }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :status, presence: true, inclusion: { in: %w[Voting_open User_voted Voting_closed Users_attending Cancelled] }
+  validates :status, presence: true, inclusion:
+    { in: %w[pending voting_open user_voted voting_closed users_attending cancelled] }
 
   private
 

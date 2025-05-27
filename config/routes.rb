@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :events do
-    resources :adventures only: %i[create]
+    resources :adventures, only: %i[create]
   end
 
   resources :notifications, only: %i[index show update]
