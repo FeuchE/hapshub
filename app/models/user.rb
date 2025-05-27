@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :user_groups, dependent: :destroy
   has_many :groups, through: :user_groups
-  has many :votes, dependent: :destroy
+  has_many :votes, dependent: :destroy
   has_many :adventures, through: :votes
 
   validates :username, presence: true, uniqueness: true
