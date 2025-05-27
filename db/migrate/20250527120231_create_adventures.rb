@@ -5,7 +5,7 @@ class CreateAdventures < ActiveRecord::Migration[7.1]
       t.text :description
       t.string :location
       t.string :image_url
-      t.references :event, null: false, foreign_key: true
+      t.references :event, foreign_key: true
 
       t.timestamps
     end
