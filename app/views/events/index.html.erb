@@ -1,8 +1,8 @@
 <div class="container">
-  <h1>Event</h1>
+  <h1>Events</h1>
   <ul>
-    <% @groups.each do |group| %>
-      <li><%= render 'event_index_card', name: group.name %></li>
+    <% @events.each do |event| %>
+      <li><%= render 'event_index_card', name: event.name %></li>
     <% end %>
   </ul>
 </div>
