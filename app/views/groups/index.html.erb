@@ -2,7 +2,7 @@
   <h1>Groups</h1>
   <ul>
     <% @groups.each do |group| %>
-      <li><%= group.name %></li>
+      <li><%= render 'groups_index_card', name: group.name %></li>
     <% end %>
   </ul>
 </div>
