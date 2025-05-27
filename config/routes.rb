@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :votes, only: %i[create]
   end
 
+  # TODO: This route is currently disabled. Uncomment and configure if calendar functionality is needed in the future.
   # resources :calendars
 
   resources :groups, only: [:index, :show] do
