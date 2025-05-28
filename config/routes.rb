@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :events, except: %i[create] do
     resources :adventures, only: %i[create]
+    resources :notifications, only: %i[new create]
   end
 
   resources :notifications, only: %i[index show update]
