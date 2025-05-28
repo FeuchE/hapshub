@@ -1,6 +1,11 @@
 class AdventuresController < ApplicationController
   def index
-    @adventures = Adventure.all
+    @event = Event.find(params[:event_id])
+    if params[:query].present?
+      @adventures = Adventure.search_by_name_and_description_and_location(params[:query]).where(event: @event)
+    else
+      @adventures = @event.adventures
+    end
   end
 
   def show
