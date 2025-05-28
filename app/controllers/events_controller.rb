@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_group, only: %w[new create]
+
   def index
     @events = Event.all
   end
@@ -13,8 +15,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @user = current_user
-    @group = Group.find(params[:group_id])
+    @event.group = @group
+    @event.user = current_user
     if @event.save
       redirect_to event_path(@event), notice: 'Event was successfully created.'
     else
@@ -23,6 +25,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
 
   def event_params
     params.require(:event).permit(:start_time, :end_time, :location, :category)

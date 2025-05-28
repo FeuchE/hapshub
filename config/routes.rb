@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :events
   end
 
-  resources :events do
+  resources :events, except: %i[create] do
     resources :adventures, only: %i[create]
   end
 
