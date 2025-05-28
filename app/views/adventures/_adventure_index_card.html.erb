@@ -1,0 +1,12 @@
+<div class='card-wrapper'>
+  <div class= "adventure_index_card_container d-flex">
+    <div
+      class="adventure-image"
+      style="background-image: url('<%= image_url %>')">
+    </div>
+    <div class='adventure-index-text'>
+      <h3><%= link_to name, adventure_path(adventure) %><h3>
+      <p><%= truncate(description, length: 30) %></p>
+    </div>
+  </div>
+</div>

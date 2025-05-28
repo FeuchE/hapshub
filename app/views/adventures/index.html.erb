@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Adventures</h1>
+  <div>
+    <% @adventures.each do |adventure| %>
+      <div><%= render 'adventure_index_card',
+        adventure: adventure,
+        image_url: adventure.image_url,
+        name: adventure.name,
+        description: adventure.description
+        %>
+      </div>
+    <% end %>
+  </div>
+</div>

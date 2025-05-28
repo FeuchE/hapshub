@@ -6,7 +6,9 @@ class EventsController < ApplicationController
   end
 
   def show
+    @adventure = Adventure.find(params[:id])
     @event = Event.find(params[:id])
+    @event.adenture = @adventure
   end
 
   def new
