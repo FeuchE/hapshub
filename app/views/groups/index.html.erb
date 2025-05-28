@@ -1,8 +1,8 @@
 <div class="container">
   <h1>Groups</h1>
-  <ul>
+  <div>
     <% @groups.each do |group| %>
-      <li><%= render 'groups_index_card', name: group.name %></li>
+      <%= render 'groups_index_card', name: group.name, group: group %>
     <% end %>
-  </ul>
+  </div>
 </div>

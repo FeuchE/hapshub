@@ -5,20 +5,20 @@ class Event < ApplicationRecord
   has_many :adventures
   has_many :notifications, dependent: :destroy
   CATEGORIES = %w[food drinks music museums sports art nature].freeze
-  STATUSES = %w[pending voting_open user_voted voting_closed users_attending cancelled].freeze
+  # STATUSES = %w[pending voting_open user_voted voting_closed users_attending cancelled].freeze
 
-  validates :name, presence: true, uniqueness: true
-  validates :description, presence: true
+  # validates :name, presence: true, uniqueness: true
+  # validates :description, presence: true
   validates :location, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
   validate :end_time_after_start_time
   validate :start_time_in_future
-  validates :image_url, presence: true
+  # validates :image_url, presence: true
   validates :category, presence: true, inclusion: { in: %w[food drinks music museums sports art nature] }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :status, presence: true, inclusion:
-    { in: %w[pending voting_open user_voted voting_closed users_attending cancelled] }
+  # validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  # validates :status, presence: true, inclusion:
+  #   { in: %w[pending voting_open user_voted voting_closed users_attending cancelled] }
 
   private
 

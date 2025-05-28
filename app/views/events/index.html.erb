@@ -2,7 +2,8 @@
   <h1>Events</h1>
   <ul>
     <% @events.each do |event| %>
-      <li><%= render 'event_index_card', name: event.name %></li>
+      <li><%= render 'event_index_card', name: event.name, event: event %></li>
     <% end %>
   </ul>
 </div>
+
