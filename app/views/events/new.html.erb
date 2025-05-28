@@ -1,5 +1,15 @@
 <div class="container">
   <h1>New event</h1>
+  <% if @event.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>There were some problems with your submission:</h4>
+      <ul>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <%= simple_form_for @event do |f| %>
     <ul class="nav nav-tabs" id="myTab" role="tablist">

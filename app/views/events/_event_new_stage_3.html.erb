@@ -1,6 +1,6 @@
 <div class="event_form_container">
 
-    <%= f.input :category, collection: Event::CATEGORIES.map{ |c| c.humanize } %>
-    <%= f.submit %>
+    <%= f.input :category, collection: Event::CATEGORIES %> #.map{ |c| c.humanize }
+    <%= f.submit "Make event", class: "btn btn-primary" %>
 
 </div>

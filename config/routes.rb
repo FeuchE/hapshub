@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
+  resources :groups, only: %i[index show] do
+    resources :events
+  end
+
   resources :events do
     resources :adventures, only: %i[create]
   end
@@ -15,7 +19,7 @@ Rails.application.routes.draw do
   # TODO: This route is currently disabled. Uncomment and configure if calendar functionality is needed in the future.
   # resources :calendars
 
-  resources :groups, only: [:index, :show] do
+  resources :groups, only: %i[index show] do
     resources :user_groups, only: %i[create destroy]
   end
 
