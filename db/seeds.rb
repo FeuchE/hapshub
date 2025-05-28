@@ -20,10 +20,19 @@ user = User.find_or_create_by!(email: 'user@username.com') do |u|
 end
 puts "User created/found: #{user.email}"
 
+user2 = User.find_or_create_by!(email: 'user2@username.com') do |u|
+  u.password = 'password'
+  u.username = 'testuser2'
+end
+puts "User created/found: #{user2.email}"
+
 # 2) Two groups
 group1 = Group.find_or_create_by!(name: 'First Test Group')
+group1.user_groups.create(user: user)
+group1.user_groups.create(user: user2)
 group2 = Group.find_or_create_by!(name: 'Second Test Group')
 puts "Groups created/found: #{group1.name}, #{group2.name}"
+
 
 # 3) Create placeholder Events first (since Adventure needs an event_id)
 event1_placeholder = Event.find_or_create_by!(name: 'Event Placeholder for Adventure One', group: group1, user: user) do |e|
