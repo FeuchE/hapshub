@@ -58,9 +58,9 @@
     </header>
 
     <main>
-       <a href="/events/new" class="card">Create New Event</a>
-      <a href="#events" class="card">Go to Events</a>
-      <a href="#account" class="card">Account</a>
+       <p><%= link_to 'New event', groups_path, class: "btn btn-primary" %></p>
+<p><%= link_to 'My events', events_path, class: "btn btn-primary" %></p>
+<p><%= link_to 'My groups', groups_path, class: "btn btn-primary" %></p>
     </main>
   </body>
 </html>
