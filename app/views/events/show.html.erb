@@ -1,11 +1,14 @@
 <div class="container">
   <h1>Event details</h1>
   <%= render 'event_show_card_1',
-    event: @event,
-    start_time: @event.start_time,
-    end_time: @event.end_time,
-    location: @event.location,
-    category: @event.category'
+  event:      @event,
+  start_time: @event.start_time,
+  end_time:   @event.end_time,
+  location:   @event.location,
+  category:   @event.category
+%>
+<%= link_to "Adventure Page",
+            event_adventure_path(@event, @event.adventure),
+            class: "btn btn-primary" %>
 
-  %>
 </div>
