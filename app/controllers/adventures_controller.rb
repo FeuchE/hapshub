@@ -20,7 +20,8 @@ class AdventuresController < ApplicationController
       redirect_to event_adventure_path(@event, @adventure),
                   notice: "Adventure updated successfully"
     else
-      render :show, alert: "Something went wrong"
+      flash.now[:alert] = "Something went wrong"
+      render :show
     end
   end
 
