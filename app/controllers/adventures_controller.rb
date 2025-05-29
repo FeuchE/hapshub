@@ -1,4 +1,7 @@
 class AdventuresController < ApplicationController
+  before_action :set_event
+  before_action :set_adventure, only: %i[show update]
+
   def index
     @event = Event.find(params[:event_id])
     if params[:query].present?
@@ -9,16 +12,26 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    @adventure = Adventure.find(params[:id])
+    @adventure
   end
 
   def update
-    @adventure = Adventure.find(params[:id])
-    @event = @adventure.event
-    if @event.update(adventure: @adventure)
-      redirect_to event_path(@event), notice: "You have chosen #{@adventure.name}"
+    if @adventure.update(adventure_params)
+      redirect_to event_adventure_path(@event, @adventure),
+                  notice: "Adventure updated successfully"
     else
-      redirect_to adventures_path, notice: "Something went wrong"
+      render :show, alert: "Something went wrong"
     end
+  end
+
+private
+  def set_event
+    @event = Event.find(params[:event_id])
+  end
+  def set_adventure
+    @adventure = @event.adventures.find(params[:id])
+  end
+  def adventure_params
+    params.require(:adventure).permit(:name, :description, :location, :start_time, :end_time)
   end
 end
