@@ -6,9 +6,9 @@ class EventsController < ApplicationController
   end
 
   def show
-    @adventure = Adventure.find(params[:id])
+    # @adventure = Adventure.find(params[:id])
     @event = Event.find(params[:id])
-    @event.adenture = @adventure
+    # @event.adenture = @adventure
   end
 
   def new
@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     @event.group = @group
     @event.user = current_user
     if @event.save
-      redirect_to event_path(@event), notice: 'Event was successfully created.'
+      redirect_to new_event_notification_path(@event), notice: 'Event was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
