@@ -5,7 +5,17 @@
     start_time: @event.start_time,
     end_time: @event.end_time,
     location: @event.location,
-    category: @event.category'
+    category: @event.category
 
   %>
+  <div>
+  <h2>Attendees</h2>
+  <% @event.group.users.each do |user| %>
+    <% if  user == @event.user || user.notifications.where(event: @event).last.attending?  %>
+    <%= user.username %> ✅
+    <% else %>
+    <%= user.username %>❌
+    <% end %>
+   <% end %>
+  </div>
 </div>
