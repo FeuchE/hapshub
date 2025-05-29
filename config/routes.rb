@@ -5,13 +5,16 @@ Rails.application.routes.draw do
   resources :groups, only: %i[index show] do
     resources :events
   end
-
-  resources :events, except: %i[create] do
+ resources :events, except: %i[create] do
     resources :adventures, only: %i[index show create]
+ end
+
+  resources :notifications, only: %i[index update]
+
+  resources :events do
     resources :notifications, only: %i[new create]
   end
 
-  resources :notifications, only: %i[index show update]
 
   resources :adventures, only: %i[show] do
     resources :votes, only: %i[create]
