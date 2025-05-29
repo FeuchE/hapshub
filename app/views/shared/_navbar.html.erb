@@ -1,20 +1,31 @@
+<%# -------------------------- Desktop nav %>
 <nav class="navbar">
-  <div class="container-fluid">
+  <div class="container-fluid d-flex align-items-center">
     <%= link_to "#", class: "navbar-brand" do %>
       <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
     <% end %>
-    <ul class="navbar-nav d-none d-sm-flex flex-row">
-    <% if user_signed_in? %>
-        <li class="nav-item"><%= link_to "home", class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "events", class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "groups", class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "account", class: "nav-link" %></li>
-        <li class="nav-item nav-logout"><%= link_to "log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link"%></li>
 
-      <% else %>
-        <li class="nav-item"><%= link_to "login", new_user_session_path, class: "nav-link" %></li>
-      <% end %>
+    <% if user_signed_in? %>
+      <ul class="navbar-nav d-none d-sm-flex flex-row flex-grow-1 justify-content-center">
+          <li class="nav-item"><%= link_to "Home", class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Events", class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Groups", class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Account", class: "nav-link" %></li>
+      </ul>
+
+      <ul class="nav-logout d-none d-sm-flex">
+        <li class="nav-item "><%= link_to "log out",
+          destroy_user_session_path,
+          data: {turbo_method: :delete},
+          class: "nav-link"%>
+        </li>
+      </ul>
+
+    <% else %>
+    <ul class="navbar-nav d-none d-sm-flex">
+      <li class="nav-item"><%= link_to "login", new_user_session_path, class: "nav-link" %></li>
     </ul>
+    <% end %>
 
 
     <%#-------------------------- Mobile Menu  %>
@@ -25,6 +36,7 @@
             aria-controls="mobileMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
+  </div>
 
     <div class="offcanvas offcanvas-start offcanvas-fullscreen" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
       <div class="offcanvas-body mobile-nav d-flex flex-column">
@@ -42,9 +54,10 @@
               <li class="nav-item"><%= link_to "GROUPS", class: "mobile-nav-link" %></li>
             </ul>
           </div>
+
+          <%# -------------- Mobile nav buttons %>
           <div class="mobile-links d-flex flex-column">
-            <button>new event</button>
-            <button>new chat</button>
+            <button type="button" aria-label="Create a new event">NEW EVENT</button>
           </div>
         <% else %>
           <div class="mobile-menu d-flex flex-column">

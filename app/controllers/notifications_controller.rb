@@ -16,6 +16,23 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def index
+    @notifications = current_user.notifications
+  end
+
+  def update
+  @notification = Notification.find(params[:id])
+  if @notification.user == current_user
+    if @notification.update(attending: params[:attending])
+      redirect_to notifications_path, notice: 'Notification updated.'
+    else
+      redirect_to notifications_path, alert: 'Failed to update notification.'
+    end
+  else
+    head :unauthorized
+  end
+end
+
   private
 
   def notification_params
