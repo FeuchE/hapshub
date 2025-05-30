@@ -8,6 +8,51 @@
     <!-- Include Bootstrap if needed for tabs -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+      /* Footer styling */
+      .footer-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 60px;
+        background-color: #ffffff;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+        z-index: 1000;
+      }
+
+      .footer-icon {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        text-decoration: none;
+        width: 50px;
+        height: 60px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .footer-icon:hover,
+      .footer-icon:focus {
+        color: #491fda; /* Your main purple color */
+      }
+
+      .footer-icon svg {
+        width: 24px;
+        height: 24px;
+        display: block;
+        stroke: currentColor;
+      }
+    </style>
   </head>
 
   <body>
@@ -80,5 +125,41 @@
         </div>
       <% end %>
     </main>
+
+    <footer class="footer-bar">
+      <a href="<%= root_path %>" aria-label="Home" class="footer-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7" />
+          <path d="M9 22V12h6v10" />
+        </svg>
+      </a>
+
+      <%= link_to groups_path, class: "footer-icon", aria: { label: "Create Event" } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="16" />
+          <line x1="8" y1="12" x2="16" y2="12" />
+        </svg>
+      <% end %>
+
+      <a href="#messages" aria-label="Messages" class="footer-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg>
+      </a>
+
+      <%= link_to groups_path, class: "footer-icon", aria: { label: "Groups" } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 00-3-3.87" />
+          <path d="M16 3.13a4 4 0 010 7.75" />
+        </svg>
+      <% end %>
+    </footer>
   </body>
 </html>

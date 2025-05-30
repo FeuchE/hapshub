@@ -1,8 +1,235 @@
-<div class="container">
+<%# <div class="container">
   <h1>Groups</h1>
   <div>
     <% @groups.each do |group| %>
-      <%= render 'groups_index_card', name: group.name, group: group %>
+      <%# <%= render 'groups_index_card', name: group.name, group: group %>
+    <%# <% end %>
+  <%# </div> %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vertical Scroll Events</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #fbf7ea;
+      color: #491fda;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px 0;
+    }
+
+    .event-section {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .event-section h2 {
+      font-size: 1.2rem;
+      color: #6a2fd7;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    /* Scrollable container with fixed height */
+.event-card-wrapper {
+  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
+  width: 500px;          /* smaller width to pull container left */
+  height: 70vh;
+  margin-left: 2;        /* align left */
+  margin-right: auto;    /* push margin right auto */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.event-scroll-container-vertical {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 20px;
+  padding: 0 16px 0 16px; /* horizontal padding to prevent touching edges */
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box; /* include padding in width */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.event-scroll-container-vertical::-webkit-scrollbar {
+  display: none;
+}
+
+.event-card-vertical {
+  scroll-snap-align: start;
+  background-image: url('https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=600&q=80');
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(73, 31, 218, 0.3);
+  width: 100%;
+  max-width: 480px;
+  height: 180px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.event-card-vertical:hover {
+  transform: scale(1.05);
+}
+
+.event-card-vertical p {
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+
+
+
+    .footer-bar {
+      height: 60px;
+      background-color: #ffffff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .footer-icon {
+      text-decoration: none;
+      color: #333;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+<main>
+  <!-- Upcoming Events Scrollable Section with vertical scroll in background wrapper -->
+  <section class="event-section">
+<%# <div class="event-card-wrapper">
+  <h2>You groups</h2>
+  <div class="event-scroll-container-vertical">
+ <a class="event-card-vertical" href="/groups/1/events/new">
+  <img src="https://via.placeholder.com/350x180?text=Neon+Light+Party" alt="" />
+  <p>Mole people</p>
+</a>
+
+<a class="event-card-vertical" href="/groups/2/events/new">
+  <img src="https://via.placeholder.com/350x180?text=Neon+Light+Party" alt="" />
+  <p>Lizard fanciers</p>
+</a> %>
+
+<%# <a class="event-card-vertical" href="/groups/3/events/new">
+  <img src="https://via.placeholder.com/350x180?text=Neon+Light+Party" alt="" />
+  <p>Pidgeon people</p>
+</a>
+
+<a class="event-card-vertical" href="/groups/4/events/new">
+  <img src="https://via.placeholder.com/350x180?text=Neon+Light+Party" alt="" />
+  <p>Koala annoyers</p>
+</a>
+
+<a class="event-card-vertical" href="/groups/5/events/new">
+  <img src="https://via.placeholder.com/350x180?text=Neon+Light+Party" alt="" />
+  <p>Chicken wranglers</p>
+</a> %>
+<%#
+  </div>
+</div> %>
+
+<div class="event-card-wrapper">
+  <h2>Your Groups</h2>
+  <div class="event-scroll-container-vertical">
+    <% @groups.each do |group| %>
+      <%= link_to group_path(group), class: "event-card-vertical" do %>
+        <img src="https://via.placeholder.com/350x180?text=Neon+Light+Party" alt="<%= group.name %>" />
+        <p><%= group.name %></p>
+      <% end %>
     <% end %>
   </div>
 </div>
+
+
+<script>
+  function handleEventClick(eventName) {
+    alert(`You selected event: ${eventName}`);
+    // Replace this with actual navigation or action
+  }
+</script>
+
+
+
+  </section>
+</main>
+
+ <footer class="footer-bar">
+   <a href="<%= root_path %>" aria-label="Home" class="footer-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7" />
+        <path d="M9 22V12h6v10" />
+      </svg>
+    </a>
+
+    <%= link_to groups_path, class: "footer-icon", aria: { label: "Create Event" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="16" />
+        <line x1="8" y1="12" x2="16" y2="12" />
+      </svg>
+    <% end %>
+
+    <a href="#messages" aria-label="Messages" class="footer-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+      </svg>
+    </a>
+
+    <%= link_to groups_path, class: "footer-icon", aria: { label: "Groups" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 00-3-3.87" />
+        <path d="M16 3.13a4 4 0 010 7.75" />
+      </svg>
+    <% end %>
+  </footer>
+</body>
+</html>

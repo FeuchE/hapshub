@@ -1,2 +1,303 @@
 // Import page-specific CSS files here.
 @import "home";
+
+/* Colors */
+:root {
+  --accent: #9931e1;
+  --medium-purple: #6a2fd7;
+  --dark-purple: #491fda;
+  --background-cream: #fbf7ea;
+  --danger: #9a1c48;
+}
+
+/* Reset & base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--background-cream);
+  color: var(--dark-purple);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a:focus,
+button:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: var(--dark-purple);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-shadow: 0 2px 5px rgba(73, 31, 218, 0.4);
+  z-index: 1000;
+}
+
+.account-icon {
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.account-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+  transition: stroke 0.2s ease;
+}
+
+.account-icon:hover svg {
+  stroke: var(--accent);
+}
+
+.nav-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 700;
+  font-size: 1.25rem;
+  user-select: none;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dropdown-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+  transition: stroke 0.2s ease;
+}
+
+.dropdown-button:hover svg {
+  stroke: var(--accent);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(73, 31, 218, 0.15);
+  border: 1px solid #ddd;
+  width: 160px;
+  font-size: 0.9rem;
+  color: var(--dark-purple);
+  display: none;
+  flex-direction: column;
+  z-index: 1001;
+}
+
+.dropdown-menu a {
+  padding: 10px 16px;
+  color: var(--dark-purple);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--background-cream);
+  color: var(--accent);
+}
+
+.dropdown-menu a:last-child {
+  color: var(--danger);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* Main container */
+main {
+  max-width: 520px;
+  margin: 80px auto 32px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 4px 10px rgba(73, 31, 218, 0.15);
+  padding: 28px 40px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--dark-purple);
+  border: 2px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card:hover {
+  background-color: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.lower-card {
+  margin-top: 100px;
+}
+
+/* Horizontal Scroll Event Cards */
+.event-scroll-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 16px;
+  padding: 10px 0 20px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100vw;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.event-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.event-card {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 180px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 4px 10px rgba(73, 31, 218, 0.15);
+  scroll-snap-align: start;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.event-card:hover {
+  border-color: var(--accent);
+}
+
+.event-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.event-card p {
+  margin: 0;
+  padding: 10px;
+  font-size: 0.9rem;
+  color: var(--dark-purple);
+  font-weight: 600;
+  flex-grow: 1;
+}
+
+.group-header-card {
+  width: 100%;
+  background-color: #6a2fd7;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
+}
+
+.group-description-box {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px 25px;
+  background: #f0e7ff;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(73, 31, 218, 0.1);
+}
+
+.members-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 20px 16px;
+  max-width: 100%;
+  scrollbar-width: none; /* Firefox */
+}
+
+.members-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.member-card {
+  flex: 0 0 auto;
+  min-width: 140px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(73, 31, 218, 0.15);
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+  transition: background-color 0.25s ease;
+}
+
+.member-card:hover,
+.member-card:focus {
+  background-color: #9931e1;
+  color: white;
+  outline: none;
+}
+
+.member-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}

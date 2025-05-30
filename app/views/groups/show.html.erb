@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HapsHub - Cyberpunk Group</title>
+  <style>
+    /* Ensure full width on html and body */
+    html, body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+      background-color: #fbf7ea;
+      color: #491fda;
+      padding: 20px;
+      padding-bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .top-card {
+      width: 100%;
+      max-width: 520px;
+      height: 200px;
+      background-image: url('https://images.unsplash.com/photo-1517414204287-7ef3c3dcd1af?auto=format&fit=crop&w=800&q=80');
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+      margin-bottom: 20px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .middle-card {
+      width: 100%;
+      max-width: 520px;
+      background-color: #f5f5f5;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      color: #491fda;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .full-width-card {
+      display: flex;
+      width: 100%;
+      max-width: 520px;
+      height: 200px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+      background-color: #491fda;
+      color: white;
+      overflow: hidden;
+    }
+    /* Left side: image 75% width */
+    .full-width-card .left {
+      width: 75%;
+      height: 100%;
+      background-image: url('https://via.placeholder.com/600x300?text=UV+Lights');
+      background-size: cover;
+      background-position: center;
+    }
+    /* Right side: button 25% width */
+    .full-width-card .right {
+      width: 25%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+    .full-width-card .right button {
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(135deg, #c5b8f5, #491fda);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .full-width-card .right button:hover {
+      background: linear-gradient(135deg, #7c68e6, #330fbb);
+    }
+
+    .bottom-card {
+      display: none;
+    }
+
+    .reptile-scroll-container {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      overflow-x: auto;
+      gap: 12px;
+      padding: 0 10px;
+      background-color: #fbf7ea;
+      box-shadow: none;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      border-radius: 0;
+      z-index: 1001;
+      scroll-behavior: smooth;
+    }
+
+    .reptile-scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .reptile-card {
+      flex: 0 0 auto;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(73, 31, 218, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      background-color: transparent;
+    }
+
+    .reptile-card:hover {
+      transform: scale(1.1);
+    }
+
+    .reptile-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 50%;
+    }
+
+    /* Footer Navbar Fix */
+    .footer-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      height: 60px;
+      background-color: #ffffff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 20px;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .footer-icon {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      text-decoration: none;
+      width: 50px;
+      height: 60px;
+    }
+
+    .footer-icon svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    .create-event-button {
+      margin-bottom: 20px;
+      max-width: 520px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn.btn-primary {
+      padding: 12px 20px;
+      background-color: #491fda;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-card">
+    Cyberpunk Skyline Group
+  </div>
+
+  <div class="middle-card">
+    Welcome to the coolest cyberpunk enthusiasts club! Join us to explore neon-lit nights and futuristic vibes.
+  </div>
+
+  <!-- Group Events Card with image left 3/4 and button right 1/4 -->
+  <a href="group events" class="full-width-card" aria-label="Group Events">
+    <div class="left"></div>
+    <div class="right">
+      <button type="button" aria-label="All events button">All Events</button>
+    </div>
+  </a>
+
+  <div class="create-event-button">
+    <!-- Example for Rails link_to, adjust for your backend -->
+    <%= link_to 'New event', new_group_event_path(Group.first), class: "btn btn-primary" %>
+  </div>
+
+  <div class="reptile-scroll-container" id="reptileScroll">
+    <div class="reptile-card">
+      <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+          <circle cx='50' cy='50' r='50' fill='%23491fda'/>
+          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+            Green Anole
+          </text>
+        </svg>" alt="Green Anole" />
+    </div>
+    <div class="reptile-card">
+      <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+          <circle cx='50' cy='50' r='50' fill='%239a3bd9'/>
+          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+            Garden Lizard
+          </text>
+        </svg>" alt="Garden Lizard" />
+    </div>
+    <div class="reptile-card">
+      <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+          <circle cx='50' cy='50' r='50' fill='%23736dc1'/>
+          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+            Leopard Gecko
+          </text>
+        </svg>" alt="Leopard Gecko" />
+    </div>
+    <div class="reptile-card">
+      <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+          <circle cx='50' cy='50' r='50' fill='%236f5bc5'/>
+          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+            Bearded Dragon
+          </text>
+        </svg>" alt="Bearded Dragon" />
+    </div>
+    <div class="reptile-card">
+      <img src="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+          <circle cx='50' cy='50' r='50' fill='%234780b4'/>
+          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+            Chameleon
+          </text>
+        </svg>" alt="Chameleon" />
+    </div>
+  </div>
+
+  <footer class="footer-bar">
+    <a href="<%= root_path %>" aria-label="Home" class="footer-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7" />
+        <path d="M9 22V12h6v10" />
+      </svg>
+    </a>
+
+    <%= link_to groups_path, class: "footer-icon", aria: { label: "Create Event" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="16" />
+        <line x1="8" y1="12" x2="16" y2="12" />
+      </svg>
+    <% end %>
+
+    <a href="#messages" aria-label="Messages" class="footer-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+      </svg>
+    </a>
+
+    <%= link_to groups_path, class: "footer-icon", aria: { label: "Groups" } do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M23 21v-2a4 4 0 00-3-3.87" />
+        <path d="M16 3.13a4 4 0 010 7.75" />
+      </svg>
+    <% end %>
+  </footer>
+
+</body>
+</html>
