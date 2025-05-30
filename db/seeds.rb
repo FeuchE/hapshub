@@ -1,16 +1,22 @@
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+require "json"
+require "rest-client"
+require "nokogiri"
+require "open-uri"
+require 'uri'
+require 'net/http'
 
 puts "Wiping existing data..."
-Notification.delete_all
+Notification.destroy_all
 # Vote.delete_all # If you have votes and want to clear them
 # UserGroup.delete_all # If you have user_groups and want to clear them
 # Calendar.delete_all # If you have calendars and want to clear them
-Adventure.delete_all
-Event.delete_all
-Group.delete_all
-User.delete_all
+Event.destroy_all
+Adventure.destroy_all
+Group.destroy_all
+User.destroy_all
 puts "Existing data wiped."
 
 # 1) A test user
@@ -71,6 +77,35 @@ adv2 = Adventure.find_or_create_by!(name: 'Adventure Two', event: event2_placeho
   adv.image_url   = 'https://placehold.co/400'
 end
 puts "Adventures created/found: #{adv1.name}, #{adv2.name}"
+
+# Seeding adventures using API
+# url = URI("https://tripadvisor-com1.p.rapidapi.com")
+
+# http = Net::HTTP.new(url.host, url.port)
+# http.use_ssl = true
+
+# request = Net::HTTP::Get.new(url)
+# request["x-rapidapi-key"] = 'a2ee7cbe6cmsh6b6ce0aff2c3b9cp1236f9jsnce68495edd76'
+# request["x-rapidapi-host"] = 'tripadvisor-com1.p.rapidapi.com'
+
+# response = http.request(request)
+# puts response.read_body
+
+
+
+# Seed to insert 10 posts in the database fetched from the API.
+# 10.times do
+#   adventure = Adventure.new(
+#     name: JSON.parse(RestClient.get(""))["name"],
+#     description: JSON.parse(RestClient.get(""))["description"],
+#     location: JSON.parse(RestClient.get(""))["location"],
+#     image_url: JSON.parse(RestClient.get(""))["image_url"]
+#   )
+#   adventure.save!
+# end
+
+
+
 
 # 5) Update the placeholder Events with their respective Adventure IDs and final details
 event1_placeholder.update!(

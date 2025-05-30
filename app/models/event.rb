@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :group
   belongs_to :adventure, optional: true
-  has_many :adventures
+  has_many :adventures, dependent: :destroy
   has_many :notifications, dependent: :destroy
   CATEGORIES = %w[food drinks music museums sports art nature].freeze
   # STATUSES = %w[pending voting_open user_voted voting_closed users_attending cancelled].freeze
