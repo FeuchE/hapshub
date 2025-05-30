@@ -7,9 +7,9 @@
 
     <% if user_signed_in? %>
       <ul class="navbar-nav d-none d-sm-flex flex-row flex-grow-1 justify-content-center">
-          <li class="nav-item"><%= link_to "Home", class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Events", class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Groups", class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Events", events_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Groups", groups_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "Account", class: "nav-link" %></li>
       </ul>
 
@@ -48,10 +48,10 @@
           <% if user_signed_in? %>
           <div class="mobile-menu d-flex flex-column">
             <ul>
-              <li class="nav-item"><%= link_to "HOME", class: "mobile-nav-link" %></li>
+              <li class="nav-item"><%= link_to "HOME", root_path, class: "mobile-nav-link" %></li>
               <li class="nav-item"><%= link_to "ACCOUNT", class: "mobile-nav-link" %></li>
-              <li class="nav-item"><%= link_to "EVENTS", class: "mobile-nav-link" %></li>
-              <li class="nav-item"><%= link_to "GROUPS", class: "mobile-nav-link" %></li>
+              <li class="nav-item"><%= link_to "EVENTS", events_path, class: "mobile-nav-link" %></li>
+              <li class="nav-item"><%= link_to "GROUPS", groups_path, class: "mobile-nav-link" %></li>
             </ul>
           </div>
 
