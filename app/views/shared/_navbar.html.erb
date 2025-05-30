@@ -1,32 +1,38 @@
 <%# -------------------------- Desktop nav %>
 <nav class="navbar">
   <div class="container-fluid d-flex align-items-center">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
+      <div style="
+        width: 40px;
+        height: 40px;
+        background-color: red;
+        color: purple;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        font-size: 0.9rem;
+      ">
+        Haps
+      </div>
     <% end %>
 
     <% if user_signed_in? %>
       <ul class="navbar-nav d-none d-sm-flex flex-row flex-grow-1 justify-content-center">
-          <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Events", events_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Groups", groups_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Account", class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Events", events_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Groups", groups_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Account", class: "nav-link" %></li>
       </ul>
-
       <ul class="nav-logout d-none d-sm-flex">
-        <li class="nav-item "><%= link_to "log out",
-          destroy_user_session_path,
-          data: {turbo_method: :delete},
-          class: "nav-link"%>
-        </li>
+        <li class="nav-item"><%= link_to "log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %></li>
       </ul>
-
     <% else %>
-    <ul class="navbar-nav d-none d-sm-flex">
-      <li class="nav-item"><%= link_to "login", new_user_session_path, class: "nav-link" %></li>
-    </ul>
+      <ul class="navbar-nav d-none d-sm-flex">
+        <li class="nav-item"><%= link_to "login", new_user_session_path, class: "nav-link" %></li>
+      </ul>
     <% end %>
-
 
     <%#-------------------------- Mobile Menu  %>
     <button class="navbar-toggler d-block d-sm-none"
@@ -38,37 +44,29 @@
     </button>
   </div>
 
-    <div class="offcanvas offcanvas-start offcanvas-fullscreen" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
-      <div class="offcanvas-body mobile-nav d-flex flex-column">
-        <button type="button"
-              class="btn-close close-mobile-menu"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close">
-        </button>
-          <% if user_signed_in? %>
-          <div class="mobile-menu d-flex flex-column">
-            <ul>
-              <li class="nav-item"><%= link_to "HOME", root_path, class: "mobile-nav-link" %></li>
-              <li class="nav-item"><%= link_to "ACCOUNT", class: "mobile-nav-link" %></li>
-              <li class="nav-item"><%= link_to "EVENTS", events_path, class: "mobile-nav-link" %></li>
-              <li class="nav-item"><%= link_to "GROUPS", groups_path, class: "mobile-nav-link" %></li>
-            </ul>
-          </div>
-
-          <%# -------------- Mobile nav buttons %>
-          <div class="mobile-links d-flex flex-column">
-            <button type="button" aria-label="Create a new event">NEW EVENT</button>
-          </div>
-        <% else %>
-          <div class="mobile-menu d-flex flex-column">
-            <ul>
-              <li class="nav-item"><%= link_to "HOME", class: "mobile-nav-link" %></li>
-              <li class="nav-item"><%= link_to "LOGIN", new_user_session_path %></li>
-            </ul>
-          </div>
-        <% end %>
-        </ul>
-      </div>
+  <div class="offcanvas offcanvas-start offcanvas-fullscreen" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-body mobile-nav d-flex flex-column">
+      <button type="button" class="btn-close close-mobile-menu" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <% if user_signed_in? %>
+        <div class="mobile-menu d-flex flex-column">
+          <ul>
+            <li class="nav-item"><%= link_to "HOME", root_path, class: "mobile-nav-link" %></li>
+            <li class="nav-item"><%= link_to "ACCOUNT", class: "mobile-nav-link" %></li>
+            <li class="nav-item"><%= link_to "EVENTS", events_path, class: "mobile-nav-link" %></li>
+            <li class="nav-item"><%= link_to "GROUPS", groups_path, class: "mobile-nav-link" %></li>
+          </ul>
+        </div>
+        <div class="mobile-links d-flex flex-column">
+          <button type="button" aria-label="Create a new event">NEW EVENT</button>
+        </div>
+      <% else %>
+        <div class="mobile-menu d-flex flex-column">
+          <ul>
+            <li class="nav-item"><%= link_to "HOME", class: "mobile-nav-link" %></li>
+            <li class="nav-item"><%= link_to "LOGIN", new_user_session_path %></li>
+          </ul>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>

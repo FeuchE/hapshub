@@ -1,38 +1,165 @@
-<div class="container">
-  <h1>New event</h1>
-  <% if @event.errors.any? %>
-    <div class="alert alert-danger">
-      <h4>There were some problems with your submission:</h4>
-      <ul>
-        <% @event.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HapsHub</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Include Bootstrap if needed for tabs -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <%= simple_form_for [@group, @event] do |f| %>
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Choose date</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Choose location</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Choose category</button>
-      </li>
-    </ul>
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-        <%= render 'event_new_stage_1', f: f %>
+    <style>
+      /* Footer styling */
+      .footer-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 60px;
+        background-color: #ffffff;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+        z-index: 1000;
+      }
+
+      .footer-icon {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        text-decoration: none;
+        width: 50px;
+        height: 60px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .footer-icon:hover,
+      .footer-icon:focus {
+        color: #491fda; /* Your main purple color */
+      }
+
+      .footer-icon svg {
+        width: 24px;
+        height: 24px;
+        display: block;
+        stroke: currentColor;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a href="#account" aria-label="Account" class="account-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5.121 17.804A13.937 13.937 0 0112 15c2.136 0 4.145.5 5.879 1.388" />
+          <circle cx="15" cy="10" r="3" />
+        </svg>
+      </a>
+
+      <h1 class="nav-title">HapsHub</h1>
+
+      <div class="dropdown">
+        <button aria-haspopup="true" aria-expanded="false" aria-label="Menu" class="dropdown-button">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+          </svg>
+        </button>
+
+        <nav class="dropdown-menu" aria-label="submenu">
+          <a href="#settings">Settings</a>
+          <a href="#help">Help</a>
+          <a href="#logout">Logout</a>
+        </nav>
       </div>
-      <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-        <%= render 'event_new_stage_2', f: f %>
-      </div>
-      <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-        <%= render 'event_new_stage_3', f: f %>
-      </div>
-    </div>
-  <% end %>
-</div>
+    </header>
+
+    <main class="container">
+      <h1>New Event</h1>
+
+      <% if @event.errors.any? %>
+        <div class="alert alert-danger">
+          <h4>There were some problems with your submission:</h4>
+          <ul>
+            <% @event.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= simple_form_for [@group, @event] do |f| %>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Choose date</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Choose location</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Choose category</button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <%= render 'event_new_stage_1', f: f %>
+          </div>
+          <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <%= render 'event_new_stage_2', f: f %>
+          </div>
+          <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+            <%= render 'event_new_stage_3', f: f %>
+          </div>
+        </div>
+      <% end %>
+    </main>
+
+    <footer class="footer-bar">
+      <a href="<%= root_path %>" aria-label="Home" class="footer-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7" />
+          <path d="M9 22V12h6v10" />
+        </svg>
+      </a>
+
+      <%= link_to groups_path, class: "footer-icon", aria: { label: "Create Event" } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="16" />
+          <line x1="8" y1="12" x2="16" y2="12" />
+        </svg>
+      <% end %>
+
+      <a href="#messages" aria-label="Messages" class="footer-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg>
+      </a>
+
+      <%= link_to groups_path, class: "footer-icon", aria: { label: "Groups" } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 00-3-3.87" />
+          <path d="M16 3.13a4 4 0 010 7.75" />
+        </svg>
+      <% end %>
+    </footer>
+  </body>
+</html>

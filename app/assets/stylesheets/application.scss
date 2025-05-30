@@ -13,6 +13,181 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// Colors
+$accent: #9931e1;
+$medium-purple: #6a2fd7;
+$dark-purple: #491fda;
+$background-cream: #fbf7ea;
+$danger: #9a1c48;
+
+// Reset & base
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: $background-cream;
+  color: $dark-purple;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a:focus,
+button:focus {
+  outline: 2px solid $accent;
+  outline-offset: 2px;
+}
+
+// Header
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: $dark-purple;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-shadow: 0 2px 5px rgba($dark-purple, 0.4);
+  z-index: 1000;
+}
+
+.account-icon {
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+    transition: stroke 0.2s ease;
+  }
+
+  &:hover svg {
+    stroke: $accent;
+  }
+}
+
+.nav-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 700;
+  font-size: 1.25rem;
+  user-select: none;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  .dropdown-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      stroke: white;
+      transition: stroke 0.2s ease;
+    }
+
+    &:hover svg {
+      stroke: $accent;
+    }
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba($dark-purple, 0.15);
+    border: 1px solid #ddd;
+    width: 160px;
+    font-size: 0.9rem;
+    color: $dark-purple;
+    display: none;
+    flex-direction: column;
+    z-index: 1001;
+
+    a {
+      padding: 10px 16px;
+      color: $dark-purple;
+      transition: background-color 0.2s ease, color 0.2s ease;
+
+      &:hover {
+        background-color: $background-cream;
+        color: $accent;
+      }
+
+      &:last-child {
+        color: $danger;
+      }
+    }
+  }
+
+  &:hover .dropdown-menu {
+    display: flex;
+  }
+}
+
+// Main container
+main {
+  max-width: 520px;
+  margin: 80px auto 32px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+// Cards
+.card {
+  background: white;
+  border-radius: 32px;
+  box-shadow: 0 4px 10px rgba($dark-purple, 0.15);
+  padding: 28px 40px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: $dark-purple;
+  border: 2px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &:hover {
+    background-color: $accent;
+    color: white;
+    border-color: $accent;
+  }
+}
 @import "pages/events/show";
 @import "components/event_show_card_1";
 
@@ -23,3 +198,4 @@
 h1 {
     padding: 20px;
 }
+
