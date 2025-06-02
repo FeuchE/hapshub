@@ -8,11 +8,13 @@
     <p class="show_event_card_1_location"><strong>Location:</strong> <%= location %></p>
     <p class="show_event_card_1_category"><strong>Category:</strong> <%= category %></p>
     <% if event.adventure.present? %>
-        <%= event.adventure.name %>
+        <p><strong>Adventure Name:</strong> <%= event.adventure.name %></p>
+        <p><strong>Adventure Address:</strong> <%= event.adventure.location %></p>
 
     <%else %>
     <%= link_to "Choose your adventure!", event_adventures_path(event) %>
 
     <% end %>
+    <%= link_to "Invite your friends", new_event_notification_path(event) %>
   </div>
 </div>
