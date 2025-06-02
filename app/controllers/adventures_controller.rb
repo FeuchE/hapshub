@@ -16,9 +16,11 @@ class AdventuresController < ApplicationController
   end
 
   def update
-    if @adventure.update(adventure_params)
-      redirect_to event_adventure_path(@event, @adventure),
-                  notice: "Adventure updated successfully"
+    @event = @adventure.event
+    @event.adventure = @adventure
+    if @event.save
+      redirect_to event_path(@event),
+                  notice: "You have chosen your adventure!"
     else
       flash.now[:alert] = "Something went wrong"
       render :show

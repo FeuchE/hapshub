@@ -4,7 +4,7 @@ class Adventure < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :users, through: :votes
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
   validates :description, presence: true
   validates :location, presence: true
   #validates :image_url, presence: true
@@ -19,4 +19,9 @@ class Adventure < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+    def google_image
+       client = Google::Apis::PlacesV1::MapsPlacesService.new
+        client.key = ENV["GOOGLE_API_KEY"]
+      client.get_place_photo_media(photo_resource + "/media")
+    end
 end

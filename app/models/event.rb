@@ -25,11 +25,11 @@ class Event < ApplicationRecord
 
     client = Google::Apis::PlacesV1::MapsPlacesService.new
     client.key = ENV["GOOGLE_API_KEY"]
-    results = client.search_place_text(Google::Apis::PlacesV1::GoogleMapsPlacesV1SearchTextRequest.new(text_query: "#{category} in #{location}"), fields: "places.displayName,places.formattedAddress,places.priceLevel" )
+    results = client.search_place_text(Google::Apis::PlacesV1::GoogleMapsPlacesV1SearchTextRequest.new(text_query: "#{category} in #{location}"), fields: "places.id,places.displayName,places.formattedAddress,places.priceLevel,places.photos" )
     results.places.each do |result|
       p result
-      adventures.create!(name: result.display_name.text, location: result.formatted_address,
-    description: "Suggested by Google Places")
+      adventures.create!(name: result.display_name.text, location: result.formatted_address, photo_resource: result.photos.first.name,
+    description: "Suggested by Google Places",place_id: result.id)
     end
   end
   private
