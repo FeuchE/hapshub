@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     @event.group = @group
     @event.user = current_user
     if @event.save
-      redirect_to new_event_notification_path(@event), notice: 'Event was successfully created.'
+      redirect_to event_adventures_path(@event), notice: 'Event was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

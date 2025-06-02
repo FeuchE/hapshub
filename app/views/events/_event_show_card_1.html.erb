@@ -7,5 +7,12 @@
     <p class="show_event_card_1_date"><strong>End time:</strong> <%= end_time.strftime("%B %d, %Y") %></p>
     <p class="show_event_card_1_location"><strong>Location:</strong> <%= location %></p>
     <p class="show_event_card_1_category"><strong>Category:</strong> <%= category %></p>
+    <% if event.adventure.present? %>
+        <%= event.adventure.name %>
+
+    <%else %>
+    <%= link_to "Choose your adventure!", event_adventures_path(event) %>
+
+    <% end %>
   </div>
 </div>
