@@ -7,7 +7,7 @@ class Adventure < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   validates :location, presence: true
-  validates :image_url, presence: true
+  #validates :image_url, presence: true
 
   include PgSearch::Model
   pg_search_scope :search_by_name_and_description_and_location,
