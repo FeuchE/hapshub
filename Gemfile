@@ -76,3 +76,4 @@ end
 gem "devise"
 gem "pg_search"
 gem "rest-client"
+gem 'google-apis-places_v1', '~> 0.1'

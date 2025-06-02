@@ -20,6 +20,12 @@ class Event < ApplicationRecord
   # validates :status, presence: true, inclusion:
   #   { in: %w[pending voting_open user_voted voting_closed users_attending cancelled] }
 
+  def generate_adventures
+
+    client = Google::Apis::PlacesV1::MapsPlacesService.new
+    client.key = ENV["GOOGLE_API_KEY"]
+    results = client.search_place_text(Google::Apis::PlacesV1::GoogleMapsPlacesV1SearchTextRequest.new(text_query: "Spicy Vegetarian Food in Sydney, Australia"), fields: "places.displayName,places.formattedAddress,places.priceLevel" )
+
   private
 
   def end_time_after_start_time
