@@ -61,7 +61,13 @@
           <!-- Event details -->
           <div style="padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
             <h2 style="font-size: 1.25rem; margin: 0 0 0.5rem 0; font-weight: 600; color: #333;"><%= event.name %></h2>
-            <p style="margin: 0 0 1rem 0; color: #666;"><%= event.location %></p>
+
+            <% if event.adventure.present? %>
+              <h2 style="font-size: 1.25rem; margin: 0 0 0.5rem 0; font-weight: 600; color: #333;"><%= event.adventure.name %></h2>
+            <% else %>
+              <p style="margin: 0 0 1rem 0; color: #666;"><%= event.location %></p>
+            <% end %>
+
             <p style="margin: 0 0 1rem 0; color: #666;">
               <strong>Starts:</strong> <%= event.start_time.strftime("%b %d, %Y %l:%M %p") %><br>
               <strong>Ends:</strong> <%= event.end_time.strftime("%b %d, %Y %l:%M %p") %>
