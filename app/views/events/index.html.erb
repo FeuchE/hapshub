@@ -1,28 +1,3 @@
-<!-- app/views/events/index.html.erb -->
-
-<style>
-  .footer-bar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #ffffff;
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    z-index: 1000;
-  }
-
-  .footer-icon {
-    text-decoration: none;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-</style>
-
 <div style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem; font-family: Arial, sans-serif;">
   <h1 style="margin-bottom: 1.5rem; font-weight: 700; font-size: 2rem; text-align: center;">Events</h1>
 
@@ -82,39 +57,3 @@
     <p style="text-align: center; color: #666; margin-top: 2rem;">No events available.</p>
   <% end %>
 </div>
-
-<footer class="footer-bar">
-  <a href="<%= root_path %>" aria-label="Home" class="footer-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 9l9-7 9 7" />
-      <path d="M9 22V12h6v10" />
-    </svg>
-  </a>
-
-  <%= link_to groups_path, class: "footer-icon", aria: { label: "Create Event" } do %>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <line x1="12" y1="8" x2="12" y2="16" />
-      <line x1="8" y1="12" x2="16" y2="12" />
-    </svg>
-  <% end %>
-
-  <a href="#messages" aria-label="Messages" class="footer-icon">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-    </svg>
-  </a>
-
-  <%= link_to groups_path, class: "footer-icon", aria: { label: "Groups" } do %>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M23 21v-2a4 4 0 00-3-3.87" />
-      <path d="M16 3.13a4 4 0 010 7.75" />
-    </svg>
-  <% end %>
-</footer>
