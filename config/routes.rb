@@ -11,8 +11,9 @@ Rails.application.routes.draw do
 
     resources :notifications, only: %i[new create]
   end
-
-
+  
+  resources :notifications
+  
   resources :adventures, only: %i[show] do
     resources :votes, only: %i[create]
   end
