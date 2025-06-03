@@ -171,7 +171,7 @@
                 <p><%= event.adventure.name %></p>
               <% else %>
                 <%= image_tag(event.photo_url.presence || "https://via.placeholder.com/180x120", alt: event.name) %>
-                <p><%= event.name %></p>
+                <p><%= event.location %></p>
               <% end %>
             </div>
           <% end %>
