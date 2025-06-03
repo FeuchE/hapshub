@@ -9,6 +9,7 @@
     <div class="adventure-text">
       <p><%= description %>
       <p><strong>Location: </strong> <%= location %></p>
+      <p><%= link_to 'Choose adventure', event_adventure_path(@event, @adventure), data: {turbo_method: :patch}, class:"btn btn-primary rounded-5" %>
     </div>
   </div>
 </div>
