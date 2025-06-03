@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,23 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HapsHub - Cyberpunk Group</title>
   <style>
-    /* Ensure full width on html and body */
-    html, body {
-      width: 100%;
+    /* General body styles */
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      padding: 20px 20px 80px; /* bottom padding to avoid footer overlap */
       font-family: sans-serif;
       background-color: #fbf7ea;
       color: #491fda;
-      padding: 20px;
-      padding-bottom: 100px;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
     }
 
+    /* Top card */
     .top-card {
       width: 100%;
       max-width: 520px;
@@ -39,11 +36,11 @@
       font-size: 2rem;
       font-weight: 700;
       text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-      margin-bottom: 20px;
-      margin-top: 20px;
+      margin: 20px 0;
       text-align: center;
     }
 
+    /* Middle card */
     .middle-card {
       width: 100%;
       max-width: 520px;
@@ -58,6 +55,7 @@
       font-size: 1.1rem;
     }
 
+    /* Full width card with image left & button right */
     .full-width-card {
       display: flex;
       width: 100%;
@@ -69,8 +67,8 @@
       background-color: #491fda;
       color: white;
       overflow: hidden;
+      text-decoration: none;
     }
-    /* Left side: image 75% width */
     .full-width-card .left {
       width: 75%;
       height: 100%;
@@ -78,7 +76,6 @@
       background-size: cover;
       background-position: center;
     }
-    /* Right side: button 25% width */
     .full-width-card .right {
       width: 25%;
       display: flex;
@@ -102,66 +99,77 @@
       background: linear-gradient(135deg, #7c68e6, #330fbb);
     }
 
-    .bottom-card {
-      display: none;
+    /* Create event button */
+    .create-event-button {
+      max-width: 520px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .btn.btn-primary {
+      padding: 12px 20px;
+      background-color: #491fda;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
     }
 
+    /* Reptile scroll container - default (scrolls normally) */
     .reptile-scroll-container {
-      position: fixed;
-      bottom: 100px;
-      left: 50%;
-      transform: translateX(-50%);
       width: 100%;
       max-width: 520px;
+      margin: 0 auto 10px auto;
       display: flex;
       overflow-x: auto;
       gap: 12px;
-      padding: 0 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      height: 110px;
       background-color: #fbf7ea;
-      box-shadow: none;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      border-radius: 0;
-      z-index: 1001;
+      scrollbar-width: thin;
+      -ms-overflow-style: auto;
       scroll-behavior: smooth;
+      box-sizing: border-box;
+      border-radius: 0;
+      transition: box-shadow 0.3s ease;
     }
 
+    /* Scrollbar styles */
     .reptile-scroll-container::-webkit-scrollbar {
-      display: none;
+      height: 8px;
+    }
+    .reptile-scroll-container::-webkit-scrollbar-track {
+      background: #fbf7ea;
+    }
+    .reptile-scroll-container::-webkit-scrollbar-thumb {
+      background-color: #491fda;
+      border-radius: 4px;
     }
 
-    .reptile-card {
-      flex: 0 0 auto;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(73, 31, 218, 0.3);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      background-color: transparent;
+    /* Fixed class applied near footer */
+    .reptile-scroll-container.fixed {
+      position: fixed;
+      bottom: 60px; /* height of footer */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 520px;
+      box-shadow: 0 -1px 8px rgba(73, 31, 218, 0.15);
+      z-index: 1100;
+      background-color: #fbf7ea;
     }
 
-    .reptile-card:hover {
-      transform: scale(1.1);
-    }
-
-    .reptile-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border-radius: 50%;
-    }
-
-    /* Footer Navbar Fix */
+    /* Footer fixed at bottom */
     .footer-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100vw;
       height: 60px;
-      background-color: #ffffff;
+      background-color: #fff;
       border-top: 1px solid #ddd;
       display: flex;
       justify-content: space-around;
@@ -171,6 +179,7 @@
       z-index: 1000;
     }
 
+    /* Footer icons */
     .footer-icon {
       flex-shrink: 0;
       display: flex;
@@ -182,30 +191,10 @@
       width: 50px;
       height: 60px;
     }
-
     .footer-icon svg {
       width: 24px;
       height: 24px;
       display: block;
-    }
-
-    .create-event-button {
-      margin-bottom: 20px;
-      max-width: 520px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .btn.btn-primary {
-      padding: 12px 20px;
-      background-color: #491fda;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
     }
   </style>
 </head>
@@ -219,69 +208,78 @@
     Welcome to the coolest cyberpunk enthusiasts club! Join us to explore neon-lit nights and futuristic vibes.
   </div>
 
-  <!-- Group Events Card with image left 3/4 and button right 1/4 -->
-  <a href="group events" class="full-width-card" aria-label="Group Events">
-    <div class="left"></div>
-    <div class="right">
-      <button type="button" aria-label="All events button">All Events</button>
+  <!-- Group Events Card -->
+<% if @upcoming_events.any? %>
+  <% event = @upcoming_events.first %>
+  <div style="display: flex; width: 100%; max-width: 900px; height: 200px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.1); font-size: 0.9rem;">
+    <%= link_to event_path(event), style: "flex: 1 1 65%; display: block; text-decoration: none; color: inherit;" do %>
+      <img
+        src="<%= event.photo_url.presence || 'https://via.placeholder.com/580x120?text=No+Image' %>"
+        alt="<%= event.name %>"
+        style="width: 100%; height: 100%; object-fit: cover;"
+      />
+    <% end %>
+
+    <div style="flex: 1 1 35%; background: #f8f9fa; display: flex; align-items: center; justify-content: center; padding: 8px;">
+      <%= link_to "View All Events", events_path, class: "btn btn-primary btn-sm", style: "width: 100%; padding: 0.25rem 0;", aria: { label: "View all events" } %>
     </div>
-  </a>
+  </div>
+<% else %>
+  <p>No upcoming events</p>
+<% end %>
+
+
+
 
   <div class="create-event-button">
-    <!-- Example for Rails link_to, adjust for your backend -->
-    <%= link_to 'New event', new_group_event_path(Group.first), class: "btn btn-primary" %>
+    <!-- Example link; replace with your backend rendering -->
+    <a href="#" class="btn btn-primary">New event</a>
   </div>
 
   <div class="reptile-scroll-container" id="reptileScroll">
-    <div class="reptile-card">
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%23491fda'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Green Anole
-          </text>
-        </svg>" alt="Green Anole" />
-    </div>
-    <div class="reptile-card">
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%239a3bd9'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Garden Lizard
-          </text>
-        </svg>" alt="Garden Lizard" />
-    </div>
-    <div class="reptile-card">
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%23736dc1'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Leopard Gecko
-          </text>
-        </svg>" alt="Leopard Gecko" />
-    </div>
-    <div class="reptile-card">
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%236f5bc5'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Bearded Dragon
-          </text>
-        </svg>" alt="Bearded Dragon" />
-    </div>
-    <div class="reptile-card">
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%234780b4'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Chameleon
-          </text>
-        </svg>" alt="Chameleon" />
-    </div>
+    <img src="data:image/svg+xml;utf8,
+      <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+        <circle cx='50' cy='50' r='50' fill='%23491fda'/>
+        <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+          Green Anole
+        </text>
+      </svg>" alt="Green Anole" />
+
+    <img src="data:image/svg+xml;utf8,
+      <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+        <circle cx='50' cy='50' r='50' fill='%239a3bd9'/>
+        <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+          Garden Lizard
+        </text>
+      </svg>" alt="Garden Lizard" />
+
+    <img src="data:image/svg+xml;utf8,
+      <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+        <circle cx='50' cy='50' r='50' fill='%23736dc1'/>
+        <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+          Leopard Gecko
+        </text>
+      </svg>" alt="Leopard Gecko" />
+
+    <img src="data:image/svg+xml;utf8,
+      <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+        <circle cx='50' cy='50' r='50' fill='%236f5bc5'/>
+        <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+          Bearded Dragon
+        </text>
+      </svg>" alt="Bearded Dragon" />
+
+    <img src="data:image/svg+xml;utf8,
+      <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+        <circle cx='50' cy='50' r='50' fill='%234780b4'/>
+        <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+          Chameleon
+        </text>
+      </svg>" alt="Chameleon" />
   </div>
 
   <footer class="footer-bar">
-    <a href="<%= root_path %>" aria-label="Home" class="footer-icon">
+    <a href="#" aria-label="Home" class="footer-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 9l9-7 9 7" />
@@ -289,14 +287,14 @@
       </svg>
     </a>
 
-    <%= link_to groups_path, class: "footer-icon", aria: { label: "Create Event" } do %>
+    <a href="#" class="footer-icon" aria-label="Create Event">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10" />
         <line x1="12" y1="8" x2="12" y2="16" />
         <line x1="8" y1="12" x2="16" y2="12" />
       </svg>
-    <% end %>
+    </a>
 
     <a href="#messages" aria-label="Messages" class="footer-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -305,7 +303,7 @@
       </svg>
     </a>
 
-    <%= link_to groups_path, class: "footer-icon", aria: { label: "Groups" } do %>
+    <a href="#" class="footer-icon" aria-label="Groups">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
@@ -313,15 +311,25 @@
         <path d="M23 21v-2a4 4 0 00-3-3.87" />
         <path d="M16 3.13a4 4 0 010 7.75" />
       </svg>
-    <% end %>
+    </a>
   </footer>
 
+  <script>
+    window.addEventListener('scroll', () => {
+      const scrollContainer = document.getElementById('reptileScroll');
+      const footer = document.querySelector('.footer-bar');
+      if (!scrollContainer || !footer) return;
+
+      const footerTop = footer.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+
+      // If footer is visible in viewport, fix the container above footer
+      if (footerTop < windowHeight) {
+        scrollContainer.classList.add('fixed');
+      } else {
+        scrollContainer.classList.remove('fixed');
+      }
+    });
+  </script>
 </body>
 </html>
-
-<div class="container">
-  <div>
-    <%= render 'groups_show_card', name: @group.name, group: @group %>
-  </div>
-</div>
-
