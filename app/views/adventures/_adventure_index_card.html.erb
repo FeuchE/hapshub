@@ -2,7 +2,7 @@
   <div class= "adventure_index_card_container d-flex">
     <div
       class="adventure-image"
-      style="background-image: url('<%= image_url %>')">
+      style="background-image: url('<%= "https://places.googleapis.com/v1/#{adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>');">
     </div>
     <div class='adventure-index-text'>
       <h3><%= link_to name, event_adventure_path(adventure.event,adventure) %><h3>

@@ -50,8 +50,10 @@
         onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)';">
 
           <!-- Event image -->
-          <% if event.photo_url.present? %>
-            <img src="<%= event.photo_url %>" alt="<%= event.name %>" style="width: 100%; height: 180px; object-fit: cover;">
+          <% if event.adventure.photo_resource.present? %>
+            <div class="adventure-image">
+              <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>" alt="<%= event.name %>" style="width: 100%; height: 180px; object-fit: cover;">
+            </div>
           <% else %>
             <img src="https://via.placeholder.com/350x180?text=No+Image" alt="No image available" style="width: 100%; height: 180px; object-fit: cover;">
           <% end %>
