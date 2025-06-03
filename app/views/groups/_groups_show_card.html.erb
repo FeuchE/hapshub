@@ -10,7 +10,7 @@
     <div class="middle-card">
       Welcome to the coolest cyberpunk enthusiasts club! Join us to explore neon-lit nights and futuristic vibes.
     </div>
-    <%= link_to "New event", new_group_event_path(group), class: "btn btn-primary" %>
+    <%= link_to "New event", new_group_event_path(group), class: "btn btn-primary rounded-5" %>
     <!-- Group Events Card -->
     <% if @upcoming_events.any? %>
       <% event = @upcoming_events.first %>
