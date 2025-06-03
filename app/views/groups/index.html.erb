@@ -5,7 +5,8 @@
       <% @groups.each do |group| %>
         <%= render 'groups_index_card',
           group: group,
-          name: group.name
+          name: group.name,
+          image_url: group.image_url
         %>
       <% end %>
     </div>
