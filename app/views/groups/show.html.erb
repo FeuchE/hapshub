@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HapsHub - Cyberpunk Group</title>
   <style>
     /* General body styles */
-    body {
+    .group_show_container {
       margin: 0;
       padding: 20px 20px 80px; /* bottom padding to avoid footer overlap */
       font-family: sans-serif;
@@ -196,10 +190,10 @@
       height: 24px;
       display: block;
     }
-  </style>
-</head>
-<body>
+</style>
 
+
+<section class="group_show_container">
   <div class="top-card">
     Cyberpunk Skyline Group
   </div>
@@ -207,34 +201,27 @@
   <div class="middle-card">
     Welcome to the coolest cyberpunk enthusiasts club! Join us to explore neon-lit nights and futuristic vibes.
   </div>
-
+  <%= link_to "New event", new_group_event_path(Group.first), class: "btn btn-primary" %>
   <!-- Group Events Card -->
-<% if @upcoming_events.any? %>
-  <% event = @upcoming_events.first %>
-  <div style="display: flex; width: 100%; max-width: 900px; height: 200px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.1); font-size: 0.9rem;">
-    <%= link_to event_path(event), style: "flex: 1 1 65%; display: block; text-decoration: none; color: inherit;" do %>
-      <img
-        src="<%= event.photo_url.presence || 'https://via.placeholder.com/580x120?text=No+Image' %>"
-        alt="<%= event.name %>"
-        style="width: 100%; height: 100%; object-fit: cover;"
-      />
+  <% if @upcoming_events.any? %>
+    <% event = @upcoming_events.first %>
+    <div style="display: flex; width: 100%; max-width: 900px; height: 200px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.1); font-size: 0.9rem;">
+      <%= link_to event_path(event), style: "flex: 1 1 65%; display: block; text-decoration: none; color: inherit;" do %>
+        <img
+          src="<%= event.photo_url.presence || 'https://via.placeholder.com/580x120?text=No+Image' %>"
+          alt="<%= event.name %>"
+          style="width: 100%; height: 100%; object-fit: cover;"
+        />
+      <% end %>
+
+      <div style="flex: 1 1 35%; background: #f8f9fa; display: flex; align-items: center; justify-content: center; padding: 8px;">
+        <%= link_to "View All Events", events_path, class: "btn btn-primary btn-sm", style: "width: 100%; padding: 0.25rem 0;", aria: { label: "View all events" } %>
+      </div>
+    </div>
+    <% else %>
+      <p>No upcoming events</p>
     <% end %>
 
-    <div style="flex: 1 1 35%; background: #f8f9fa; display: flex; align-items: center; justify-content: center; padding: 8px;">
-      <%= link_to "View All Events", events_path, class: "btn btn-primary btn-sm", style: "width: 100%; padding: 0.25rem 0;", aria: { label: "View all events" } %>
-    </div>
-  </div>
-<% else %>
-  <p>No upcoming events</p>
-<% end %>
-
-
-
-
-
-    <!-- Example link; replace with your backend rendering -->
-    <%= link_to "New event", new_group_event_path(Group.first), class: "btn btn-primary" %>
-  </div>
 
   <div class="reptile-scroll-container" id="reptileScroll">
     <img src="data:image/svg+xml;utf8,
@@ -277,7 +264,7 @@
         </text>
       </svg>" alt="Chameleon" />
   </div>
-
+</section>
   <footer class="footer-bar">
     <a href="#" aria-label="Home" class="footer-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -331,5 +318,3 @@
       }
     });
   </script>
-</body>
-</html>
