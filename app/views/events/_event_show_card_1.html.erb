@@ -24,6 +24,9 @@
       </p>
 
       <% if event.adventure.present? %>
+        <div class="adventure-image">
+          <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>">
+        </div>
         <p class="mb-2">
           <strong>🗺️ Adventure Name:</strong>
           <%= event.adventure.name %>
@@ -33,6 +36,7 @@
           <%= event.adventure.location %>
         </p>
       <% else %>
+
         <div class="mb-4">
           <%= link_to "✨ Choose your adventure!", event_adventures_path(event), class: "btn btn-outline-secondary" %>
         </div>
