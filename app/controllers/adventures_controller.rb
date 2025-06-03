@@ -11,6 +11,17 @@ class AdventuresController < ApplicationController
     end
   end
 
+  def create
+    @event = Event.new(event_params)
+    @event.group = @group
+    @event.user = current_user
+    if @event.save
+      redirect_to event_adventures_path(@event), notice: 'Event was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show
     @adventure
   end

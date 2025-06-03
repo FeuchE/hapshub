@@ -231,9 +231,9 @@
 
 
 
-  <div class="create-event-button">
+
     <!-- Example link; replace with your backend rendering -->
-    <a href="#" class="btn btn-primary">New event</a>
+    <%= link_to "New event", new_group_event_path(Group.first), class: "btn btn-primary" %>
   </div>
 
   <div class="reptile-scroll-container" id="reptileScroll">
