@@ -1,4 +1,23 @@
-.adventure-image {
-  height: 200px;
-  width: 200px;
+.adventure_index_card_container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0.5rem;
+  background-color: white;
+
+  .adventure-image {
+    height: 250px;
+    width: 250px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .adventure-index-text {
+    padding: 10px;
+  }
 }
