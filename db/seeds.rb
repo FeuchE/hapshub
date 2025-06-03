@@ -33,10 +33,10 @@ end
 puts "User created/found: #{user2.email}"
 
 # 2) Two groups
-group1 = Group.find_or_create_by!(name: 'Cyberpunk Skyline Group')
+group1 = Group.find_or_create_by!(name: 'Cyberpunk Skyline Group', image_url: "https://img.freepik.com/premium-photo/fashionable-cyberpunk-crew-people-street-night-city-future-cyberpunk-city_250484-1473.jpg")
 group1.user_groups.create(user: user)
 group1.user_groups.create(user: user2)
-group2 = Group.find_or_create_by!(name: 'Synthwave Circle Group')
+group2 = Group.find_or_create_by!(name: 'Synthwave Circle Group', image_url: "https://img.freepik.com/premium-photo/retro-disco-ball-background-with-sparkling-mirrored-disco-ball_1282204-1409.jpg")
 group2.user_groups.create(user: user)
 group2.user_groups.create(user: user2)
 puts "Groups created/found: #{group1.name}, #{group2.name}"
