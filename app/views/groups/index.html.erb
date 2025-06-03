@@ -18,7 +18,7 @@
       margin: 0;
       font-family: sans-serif;
       background-color: #fbf7ea;
-      color: #491fda;
+      color: $dark-purple;
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -46,8 +46,8 @@
     }
 
     /* Scrollable container with fixed height */
-.event-card-wrapper {
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
+.group-card-wrapper {
+  background-image: linear-gradient(to bottom left, #9931e1, #491fda);
   background-size: cover;
   background-position: center;
   border-radius: 20px;
@@ -63,6 +63,21 @@
   gap: 20px;
   overflow: hidden;
 }
+
+.group-card-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(178, 148, 234, 0.4); /* $light-purple with 40% opacity */
+    z-index: 0;
+    pointer-events: none; /* ensures overlay doesn't block clicks */
+  }
+
+  /* Ensure content stays above the overlay */
+  .group-card-wrapper > * {
+    position: relative;
+    z-index: 1;
+  }
 
 .event-scroll-container-vertical {
   display: flex;
@@ -171,7 +186,7 @@
   </div>
 </div> %>
 
-<div class="event-card-wrapper">
+<div class="group-card-wrapper">
   <h2>Your Groups</h2>
   <div class="event-scroll-container-vertical">
     <% @groups.each do |group| %>
