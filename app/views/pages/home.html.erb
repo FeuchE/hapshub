@@ -175,7 +175,7 @@
 <section class="event-section">
   <div class="event-card-wrapper">
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <%= link_to events_path, class: "btn btn-primary", aria: { label: "View all events" } do %>
+      <%= link_to events_path, class: "btn btn-primary rounded-5", aria: { label: "View all events" } do %>
         Your Upcoming Events
       <% end %>
     </div>
@@ -185,8 +185,14 @@
         <% @upcoming_events.each do |event| %>
           <%= link_to event_path(event), class: "event-card-link" do %>
             <div class="event-card">
-              <%= image_tag(event.photo_url.presence || "https://via.placeholder.com/180x120", alt: event.name) %>
-              <p><%= event.name %></p>
+
+              <% if event.adventure.present? %>
+                <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>">
+                <p><%= event.adventure.name %></p>
+              <% else %>
+                <%= image_tag(event.photo_url.presence || "https://via.placeholder.com/180x120", alt: event.name) %>
+                <p><%= event.name %></p>
+              <% end %>
             </div>
           <% end %>
         <% end %>
