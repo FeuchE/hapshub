@@ -5,5 +5,6 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @upcoming_events = @group.events # You can add filtering here if needed
   end
 end

@@ -1,14 +1,16 @@
 class EventsController < ApplicationController
-  before_action :set_group, only: %w[new create]
+  before_action :set_group, only: %i[new create show]
 
   def index
-    @events = Event.all
+    if @group
+      @events = @group.events # You can add `.upcoming` scope if defined
+    else
+      @events = Event.all # or Event.upcoming if you create that scope
+    end
   end
 
   def show
-    # @adventure = Adventure.find(params[:id])
     @event = Event.find(params[:id])
-    # @event.adenture = @adventure
   end
 
   def new
@@ -29,7 +31,7 @@ class EventsController < ApplicationController
   private
 
   def set_group
-    @group = Group.find(params[:group_id])
+    @group = Group.find(params[:group_id]) if params[:group_id].present?
   end
 
   def event_params

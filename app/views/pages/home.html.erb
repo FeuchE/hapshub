@@ -171,43 +171,32 @@
   </style>
 
   <main>
-    <!-- Upcoming Events Scrollable Section with background wrapper -->
-    <section class="event-section">
-      <div class="event-card-wrapper">
-       <h2>Your Upcoming Events</h2>
-  <div class="event-scroll-container">
-
-    <div class="event-card">
-      <img src="https://via.placeholder.com/180x120" alt="Event 1" />
-      <p>Music Night</p>
+<!-- Upcoming Events Scrollable Section with background wrapper -->
+<section class="event-section">
+  <div class="event-card-wrapper">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <%= link_to events_path, class: "btn btn-primary", aria: { label: "View all events" } do %>
+        Your Upcoming Events
+      <% end %>
     </div>
 
-    <div class="event-card">
-      <img src="https://via.placeholder.com/180x120" alt="Event 2" />
-      <p>Community Market</p>
+    <div class="event-scroll-container">
+      <% if @upcoming_events.any? %>
+        <% @upcoming_events.each do |event| %>
+          <%= link_to event_path(event), class: "event-card-link" do %>
+            <div class="event-card">
+              <%= image_tag(event.photo_url.presence || "https://via.placeholder.com/180x120", alt: event.name) %>
+              <p><%= event.name %></p>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p class="text-muted">No upcoming events yet.</p>
+      <% end %>
     </div>
-
-    <div class="event-card">
-      <img src="https://via.placeholder.com/180x120" alt="Event 3" />
-      <p>Yoga in the Park</p>
-    </div>
-
-    <div class="event-card">
-      <img src="https://via.placeholder.com/180x120" alt="Event 4" />
-      <p>PP in the Pond</p>
-    </div>
-
-    <div class="event-card">
-      <img src="https://via.placeholder.com/180x120" alt="Event 5" />
-      <p>Drinks at Red</p>
-    </div>
-
   </div>
-</div>
+</section>
 
-        </div>
-      </div>
-    </section>
 
     <%# <!-- Existing Cards Section -->
     <div class="card-container">
