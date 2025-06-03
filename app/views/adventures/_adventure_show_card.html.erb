@@ -1,6 +1,6 @@
 <div class='card-wrapper'>
-  <div class="adventure-card d-flex">
-    <h2><%= name %>
+  <div class="adventure-card">
+    <h2><%= name %></h2>
 
     <div class="adventure-image">
       <img src="<%= "https://places.googleapis.com/v1/#{adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>">
