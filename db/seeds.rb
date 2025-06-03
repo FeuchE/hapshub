@@ -33,12 +33,13 @@ end
 puts "User created/found: #{user2.email}"
 
 # 2) Two groups
-group1 = Group.find_or_create_by!(name: 'First Test Group')
+group1 = Group.find_or_create_by!(name: 'Cyberpunk Skyline Group')
 group1.user_groups.create(user: user)
 group1.user_groups.create(user: user2)
-group2 = Group.find_or_create_by!(name: 'Second Test Group')
+group2 = Group.find_or_create_by!(name: 'Synthwave Circle Group')
+group2.user_groups.create(user: user)
+group2.user_groups.create(user: user2)
 puts "Groups created/found: #{group1.name}, #{group2.name}"
-
 
 # 3) Create placeholder Events first (since Adventure needs an event_id)
 # event1_placeholder = Event.find_or_create_by!(name: 'Event Placeholder for Adventure One', group: group1, user: user) do |e|
@@ -91,8 +92,6 @@ puts "Groups created/found: #{group1.name}, #{group2.name}"
 # response = http.request(request)
 # puts response.read_body
 
-
-
 # Seed to insert 10 posts in the database fetched from the API.
 # 10.times do
 #   adventure = Adventure.new(
@@ -103,9 +102,6 @@ puts "Groups created/found: #{group1.name}, #{group2.name}"
 #   )
 #   adventure.save!
 # end
-
-
-
 
 # 5) Update the placeholder Events with their respective Adventure IDs and final details
 # event1_placeholder.update!(
@@ -121,4 +117,4 @@ puts "Groups created/found: #{group1.name}, #{group2.name}"
 # )
 # puts "Events updated with adventure associations."
 
-puts "Seeding complete! 1 user, 2 groups, 2 events, 2 adventures created and linked."
+puts "Seeding complete! 2 users, 2 groups."
