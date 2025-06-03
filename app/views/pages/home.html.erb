@@ -223,12 +223,12 @@
       </svg>
     <% end %>
 
-    <a href="#messages" aria-label="Messages" class="footer-icon">
+    <%= link_to notifications_path, class: "footer-icon", aria: { label: "Notifications" } do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
       </svg>
-    </a>
+    <% end %>
 
     <%= link_to groups_path, class: "footer-icon", aria: { label: "Groups" } do %>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
