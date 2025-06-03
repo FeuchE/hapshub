@@ -1,3 +1,6 @@
 <div class="group_index_card_container">
-  <%= link_to name, group_path(group), class: "btn btn-primary" %>
+  <%= link_to group_path(group), class: "event-card-vertical" do %>
+    <img src="https://via.placeholder.com/350x180?text=Neon+Light+Party" alt="<%= group.name %>" />
+    <p><%= name %></p>
+  <% end %>
 </div>

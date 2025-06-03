@@ -1,0 +1,51 @@
+.event-scroll-container-vertical {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 20px;
+  padding: 0 16px 0 16px; /* horizontal padding to prevent touching edges */
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box; /* include padding in width */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.event-scroll-container-vertical::-webkit-scrollbar {
+  display: none;
+}
+
+.event-card-vertical {
+  scroll-snap-align: start;
+  background-image: url('https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=600&q=80');
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(73, 31, 218, 0.3);
+  width: 100%;
+  max-width: 480px;
+  height: 180px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.event-card-vertical:hover {
+  transform: scale(1.05);
+}
+
+.event-card-vertical p {
+  margin: 0;
+  padding-bottom: 5px;
+}

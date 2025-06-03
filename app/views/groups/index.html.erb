@@ -80,7 +80,7 @@
     z-index: 1;
   } %>
 
-.event-scroll-container-vertical {
+<%# .event-scroll-container-vertical {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -130,11 +130,11 @@
 .event-card-vertical p {
   margin: 0;
   padding-bottom: 5px;
-}
+} %>
 
 
-
-
+<head>
+<style>
     .footer-bar {
       height: 60px;
       background-color: #ffffff;
@@ -152,10 +152,10 @@
   </style>
 </head>
 
-<body>
-<main>
+<%# <body>
+<main> %>
   <!-- Upcoming Events Scrollable Section with vertical scroll in background wrapper -->
-  <section class="event-section">
+
 <%# <div class="event-card-wrapper">
   <h2>You groups</h2>
   <div class="event-scroll-container-vertical">
@@ -187,14 +187,15 @@
   </div>
 </div> %>
 
+<section class="event-section">
 <div class="group-card-wrapper">
   <h2>Your Groups</h2>
   <div class="event-scroll-container-vertical">
     <% @groups.each do |group| %>
-      <%= link_to group_path(group), class: "event-card-vertical" do %>
-        <img src="https://via.placeholder.com/350x180?text=Neon+Light+Party" alt="<%= group.name %>" />
-        <p><%= group.name %></p>
-      <% end %>
+      <%= render 'groups_index_card',
+        group: group,
+        name: group.name
+      %>
     <% end %>
   </div>
 </div>
@@ -207,10 +208,9 @@
   }
 </script>
 
+</section>
 
-
-  </section>
-</main>
+<%# </main> %>
 
  <footer class="footer-bar">
    <a href="<%= root_path %>" aria-label="Home" class="footer-icon">
@@ -247,5 +247,5 @@
       </svg>
     <% end %>
   </footer>
-</body>
-</html>
+<%# </body>
+</html> %>
