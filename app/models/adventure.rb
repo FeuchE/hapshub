@@ -22,6 +22,7 @@ class Adventure < ApplicationRecord
     def google_image
        client = Google::Apis::PlacesV1::MapsPlacesService.new
         client.key = ENV["GOOGLE_API_KEY"]
+        uri = URI("https://places.googleapis.com/v1/places:searchText?key=#{client.key}")
       client.get_place_photo_media(photo_resource + "/media")
     end
 end
