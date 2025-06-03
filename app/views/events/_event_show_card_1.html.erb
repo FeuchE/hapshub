@@ -1,22 +1,41 @@
-<div class="show_event_card_1_container">
-  <div class="show_event_card_1_header">
-    <h2>Your new event!</h2>
+<div class="card shadow-lg mb-4">
+  <div class="card-header bg-primary rounded-5 text-white">
+    <h2 class="mb-0">🎉 Your New Event!</h2>
   </div>
-  <div class="show_event_card_1_body">
-    <p class="show_event_card_1_date"><strong>Start time:</strong> <%= start_time.strftime("%B %d, %Y") %></p>
-    <p class="show_event_card_1_date"><strong>End time:</strong> <%= end_time.strftime("%B %d, %Y") %></p>
-    <p class="show_event_card_1_location"><strong>Location:</strong> <%= location %></p>
-    <p class="show_event_card_1_category"><strong>Category:</strong> <%= category %></p>
+
+  <div class="card-body">
+    <p class="mb-2">
+      <strong>📅 Start Time:</strong>
+      <%= start_time.strftime("%B %d, %Y %I:%M %p") %>
+    </p>
+    <p class="mb-2">
+      <strong>📅 End Time:</strong>
+      <%= end_time.strftime("%B %d, %Y %I:%M %p") %>
+    </p>
+    <p class="mb-2">
+      <strong>📍 Location:</strong>
+      <%= location.presence || "TBD" %>
+    </p>
+    <p class="mb-3">
+      <strong>🏷️ Category:</strong>
+      <%= category.presence || "Uncategorized" %>
+    </p>
+
     <% if event.adventure.present? %>
-        <p><strong>Adventure Name:</strong> <%= event.adventure.name %></p>
-        <p><strong>Adventure Address:</strong> <%= event.adventure.location %></p>
-
-    <%else %>
-    <%= link_to "Choose your adventure!", event_adventures_path(event) %>
-
+      <p class="mb-2">
+        <strong>🗺️ Adventure Name:</strong>
+        <%= event.adventure.name %>
+      </p>
+      <p class="mb-4">
+        <strong>📌 Adventure Address:</strong>
+        <%= event.adventure.location %>
+      </p>
+    <% else %>
+      <div class="mb-4">
+        <%= link_to "✨ Choose your adventure!", event_adventures_path(event), class: "btn btn-outline-secondary" %>
+      </div>
     <% end %>
-    <%= link_to "Invite your friends", new_event_notification_path(event), class:"btn btn-primary" %>
 
-
+    <%= link_to "📨 Invite your friends", new_event_notification_path(event), class: 'btn btn-primary rounded-5' %>
   </div>
 </div>
