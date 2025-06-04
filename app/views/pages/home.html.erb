@@ -1,6 +1,4 @@
-<!-- app/views/pages/home.html.erb -->
-
-<!-- Include FullCalendar CSS and JS -->
+<!-- FullCalendar CSS and JS -->
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
@@ -8,7 +6,7 @@
   body {
     margin: 0;
     font-family: sans-serif;
-    padding-bottom: 80px;
+    padding-top: 60px; /* Adjust this if your navbar is taller/shorter */
     background-color: #fbf7ea;
     color: #491fda;
   }
@@ -17,123 +15,147 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 0 16px;
+    padding-top: 0;
+    margin-top: 0;
   }
 
   .event-section {
     width: 100%;
     max-width: 520px;
-    margin: 0 auto 20px;
-    padding: 0 16px;
+    margin-top: 6px;
+    position: relative;
   }
 
-  .event-section h2 {
-    font-size: 1.2rem;
+  .intro-section {
+    background-color: #ffffff;
+    padding: 16px 16px 12px 16px;
+    margin-top: 0; /* Raised closer to top */
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(73, 31, 218, 0.08);
+  }
+
+  .intro-section h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .intro-section .lead,
+  .intro-section .text-muted {
+    font-size: 0.95rem;
+    text-align: center;
+    margin: 4px 0;
+  }
+
+  .calendar-events-card {
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+  }
+
+  .event-heading {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
     color: #6a2fd7;
     font-weight: 700;
-    margin-bottom: 12px;
+    text-align: center;
   }
 
-  /* Calendar card wrapper to match event card wrapper style */
-  .calendar-card-wrapper {
-    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
-    padding: 20px;
+  #calendarToggle {
+    cursor: pointer;
+    background-color: #6a2fd7;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    font-weight: 600;
+    border-radius: 30px;
+    text-align: center;
+    margin: 0 auto 8px auto;
+    display: block;
+    width: max-content;
+    user-select: none;
+  }
+
+  .calendar-dropdown {
+    display: none;
+    position: absolute;
+    top: 58px;
+    left: 12px;
+    right: 12px;
+    background: white;
+    border-radius: 16px;
     box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    z-index: 1000;
+    max-height: 350px;
+    overflow-y: auto;
+    min-height: 320px;
   }
 
-  /* Calendar styling */
   #calendar {
     width: 100%;
-    max-height: 300px;
-    overflow-y: auto;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: none; /* shadow is on the wrapper */
+    height: 320px;
   }
 
-/* Reduce height and width of day cells */
-/* Force day cell height */
-.fc .fc-daygrid-day {
-  height: 20px !important;
-  min-height: 20px !important;
-  padding: 2px !important;
-  border: 1px solid #ddd; /* Optional, to visualize the cells */
-  box-sizing: border-box;
-}
+  .fc .fc-daygrid-day {
+    min-width: 30px !important;
+    width: 30px !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 2px !important;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+  }
 
-/* Reduce day number font and spacing */
-.fc .fc-daygrid-day-top {
-  font-size: 0.65rem !important;
-  line-height: 1 !important;
-  padding: 0 2px !important;
-  margin-bottom: 0 !important;
-  height: 14px !important; /* limit height */
-  overflow: hidden;
-}
-
-/* Reduce event height */
-.fc .fc-daygrid-event {
-  font-size: 0.6rem !important;
-  padding: 0 3px !important;
-  line-height: 1 !important;
-  max-height: 14px !important;
-  overflow: hidden;
-}
-
-/* Also limit row height */
-.fc .fc-daygrid-body {
-  max-height: 140px !important; /* 7 rows * 20px each = 140px */
-  overflow-y: hidden;
-}
-
-
-/* Optionally reduce header height */
-.fc .fc-toolbar-title {
-  font-size: 1rem !important;
-}
-
-
-  .event-card-wrapper {
-    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .fc .fc-col-header {
     position: relative;
-    top: -15.33vh;
-    gap: 16px;
+    background-color: #fff;
+    font-size: 0.7rem !important;
+    padding: 2px !important;
+    height: 20px !important;
+    line-height: 1.1 !important;
+  }
+
+  .fc .fc-daygrid-day-top {
+    font-size: 0.55rem !important;
+    line-height: 1 !important;
+    padding: 0 2px !important;
+    margin-bottom: 0 !important;
+    height: 12px !important;
+    overflow: hidden;
+  }
+
+  .fc .fc-daygrid-event {
+    font-size: 0.5rem !important;
+    padding: 0 2px !important;
+    line-height: 1 !important;
+    max-height: 12px !important;
+    overflow: hidden;
+  }
+
+  .fc .fc-toolbar-title {
+    font-size: 1rem !important;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .fc-event:hover {
+    background-color: #a88beb !important;
+    cursor: pointer;
   }
 
   .event-scroll-container {
     display: flex;
     overflow-x: auto;
-    gap: 12px;
-    width: 100%;
-    padding: 0 16px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-snap-type: x mandatory;
-    scroll-padding: 16px;
+    gap: 8px;
+    padding: 0 4px;
   }
 
   .event-scroll-container::-webkit-scrollbar {
@@ -142,11 +164,10 @@
 
   .event-card {
     flex: 0 0 auto;
-    scroll-snap-align: start;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
-    width: 150px;
+    border-radius: 12px;
+    width: 130px;
+    box-shadow: 0 2px 10px rgba(73, 31, 218, 0.2);
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
   }
@@ -158,45 +179,99 @@
 
   .event-card img {
     width: 100%;
-    height: 120px;
+    height: 100px;
     object-fit: cover;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     display: block;
   }
 
   .event-card p {
-    margin: 12px;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.85rem;
+    margin: 6px;
     text-align: center;
   }
 
-  /* Remove title text completely */
-  .fc-event:hover {
-    background-color: #a88beb !important; /* Lighter purple on hover */
-    cursor: pointer;
+  .text-muted {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .btn-primary {
+    background-color: #6a2fd7;
+    border-color: #6a2fd7;
+    color: white;
+    padding: 6px 14px;
+    font-weight: 600;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-top: 8px;
+  }
+
+  .btn-primary:hover {
+    background-color: #4a1ea3;
+    border-color: #4a1ea3;
+    color: white;
+  }
+
+  @media (max-width: 420px) {
+    .intro-section h1 {
+      font-size: 1rem;
+    }
+
+    .intro-section .lead,
+    .intro-section .text-muted {
+      font-size: 0.8rem;
+    }
+
+    .event-card {
+      width: 110px;
+    }
+
+    .event-card img {
+      height: 90px;
+    }
+
+    .event-card p {
+      font-size: 0.75rem;
+    }
+
+    .fc .fc-toolbar-title {
+      font-size: 0.85rem !important;
+    }
+
+    .fc .fc-daygrid-day-top {
+      font-size: 0.55rem !important;
+    }
   }
 </style>
 
 <main>
-  <!-- Calendar Section: can be extracted to a partial _calendar.html.erb -->
-  <section class="event-section">
-    <div class="calendar-card-wrapper">
-      <h2 class="event-heading">Upcoming Events Calendar</h2>
-      <div id="calendar"></div>
-    </div>
+  <section class="intro-section">
+    <h1>For groups of people with varied schedules, but shared passions!</h1>
+    <p class="lead">Keep track of your upcoming events, plan events, and discover new adventures — all in one place.</p>
   </section>
 
-  <!-- Upcoming Events Scrollable Section: can be extracted to a partial _upcoming_events.html.erb -->
   <section class="event-section">
-    <div class="event-card-wrapper">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <%= link_to events_path, class: "btn btn-primary rounded-5", aria: { label: "View all events" } do %>
-          Your Upcoming Events
-        <% end %>
+    <div class="calendar-events-card">
+      <h2 class="event-heading">Your Upcoming Events</h2>
+
+      <!-- Toggle button for calendar dropdown -->
+      <button id="calendarToggle" aria-expanded="false" aria-controls="calendarDropdown">Show Calendar</button>
+
+      <!-- Dropdown container for calendar -->
+      <div id="calendarDropdown" class="calendar-dropdown" aria-hidden="true">
+        <div id="calendar"></div>
       </div>
 
+      <!-- Scrollable Upcoming Events -->
       <div class="event-scroll-container">
         <% if @upcoming_events.any? %>
           <% @upcoming_events.each do |event| %>
@@ -216,18 +291,38 @@
           <p class="text-muted">No upcoming events yet.</p>
         <% end %>
       </div>
+
+      <div class="text-center">
+        <%= link_to "View All Events", events_path, class: "btn-primary" %>
+      </div>
     </div>
   </section>
 </main>
 
 <script>
-  document.addEventListener('turbo:load', () => {
+  let calendar = null;
+  let calendarToggle = null;
+  let calendarDropdown = null;
+
+  function initializeCalendar() {
     const calendarEl = document.getElementById('calendar');
-    if (!calendarEl) return;
+    calendarToggle = document.getElementById('calendarToggle');
+    calendarDropdown = document.getElementById('calendarDropdown');
+    if (!calendarEl || !calendarToggle || !calendarDropdown) return;
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
-    const calendar = new FullCalendar.Calendar(calendarEl, {
+    if (calendar) {
+      calendar.destroy();
+      calendar = null;
+    }
+
+    calendarDropdown.style.display = 'none';
+    calendarDropdown.setAttribute('aria-hidden', 'true');
+    calendarToggle.textContent = 'Show Calendar';
+    calendarToggle.setAttribute('aria-expanded', 'false');
+
+    calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
       eventSources: [
         {
@@ -245,12 +340,47 @@
       height: 'auto',
       eventColor: '#6a2fd7',
       headerToolbar: {
-        left: 'prev,next today',
+        left: '',
         center: 'title',
         right: ''
       }
     });
 
     calendar.render();
-  });
+
+    const newToggle = calendarToggle.cloneNode(true);
+    calendarToggle.parentNode.replaceChild(newToggle, calendarToggle);
+    calendarToggle = newToggle;
+
+    calendarToggle.addEventListener('click', () => {
+      const isHidden = calendarDropdown.style.display === 'none' || calendarDropdown.style.display === '';
+      if (isHidden) {
+        calendarDropdown.style.display = 'block';
+        calendarDropdown.setAttribute('aria-hidden', 'false');
+        calendarToggle.textContent = 'Hide Calendar';
+        calendarToggle.setAttribute('aria-expanded', 'true');
+        setTimeout(() => calendar.updateSize(), 10);
+      } else {
+        calendarDropdown.style.display = 'none';
+        calendarDropdown.setAttribute('aria-hidden', 'true');
+        calendarToggle.textContent = 'Show Calendar';
+        calendarToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (
+        calendarDropdown.style.display === 'block' &&
+        !calendarDropdown.contains(event.target) &&
+        event.target !== calendarToggle
+      ) {
+        calendarDropdown.style.display = 'none';
+        calendarDropdown.setAttribute('aria-hidden', 'true');
+        calendarToggle.textContent = 'Show Calendar';
+        calendarToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  document.addEventListener('turbo:load', initializeCalendar);
 </script>
