@@ -30,19 +30,38 @@ $danger: #9a1c48;
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: $body-font;
   background-color: $background-cream;
+  color: $dark-purple;
+}
+
+// Apply Roboto to most text elements
+body,
+p,
+span,
+div,
+li,
+input,
+button,
+label,
+select,
+textarea,
+a {
+  font-family: $body-font;
+}
+
+// Apply Fontdiner Swanky to headers
+h1,
+h2,
+h3 {
+  font-family: $headers-font;
+  text-align: center;
   color: $dark-purple;
 }
 
 h1 {
   color: $medium-purple;
-  text-align: center;
-}
-
-h2 {
-  color: $dark-purple;
-  text-align: center;
+  padding: 20px;
 }
 
 a {
@@ -200,12 +219,7 @@ main {
     border-color: $accent;
   }
 }
+
+// Final partials
 @import "pages/events/show";
 @import "components/event_show_card_1";
-
-// Fonts
-@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap");
-
-h1 {
-  padding: 20px;
-}
