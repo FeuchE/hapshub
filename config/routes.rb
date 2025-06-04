@@ -7,10 +7,11 @@ Rails.application.routes.draw do
     resources :user_groups, only: %i[create destroy]
   end
 
-  resources :events, except: %i[create] do
-    resources :adventures, only: %i[index show create update]
-    resources :notifications, only: %i[new create]
-  end
+  resources :events do
+  resources :adventures, only: %i[index show create update]
+  resources :notifications, only: %i[new create]
+end
+
 
   resources :notifications
 

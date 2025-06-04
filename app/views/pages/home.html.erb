@@ -1,184 +1,256 @@
+<!-- app/views/pages/home.html.erb -->
 
+<!-- Include FullCalendar CSS and JS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      padding-bottom: 80px;
-      background-color: #fbf7ea; /* from your SCSS background cream */
-      color: #491fda; /* dark purple */
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    padding-bottom: 80px;
+    background-color: #fbf7ea;
+    color: #491fda;
+  }
 
-    main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;  /* centers vertically */
-  height: 100vh;            /* full height of the viewport */
-  padding: 0 16px;
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 16px;
+  }
+
+  .event-section {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto 20px;
+    padding: 0 16px;
+  }
+
+  .event-section h2 {
+    font-size: 1.2rem;
+    color: #6a2fd7;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  /* Calendar card wrapper to match event card wrapper style */
+  .calendar-card-wrapper {
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Calendar styling */
+  #calendar {
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: none; /* shadow is on the wrapper */
+  }
+
+/* Reduce height and width of day cells */
+/* Force day cell height */
+.fc .fc-daygrid-day {
+  height: 20px !important;
+  min-height: 20px !important;
+  padding: 2px !important;
+  border: 1px solid #ddd; /* Optional, to visualize the cells */
+  box-sizing: border-box;
+}
+
+/* Reduce day number font and spacing */
+.fc .fc-daygrid-day-top {
+  font-size: 0.65rem !important;
+  line-height: 1 !important;
+  padding: 0 2px !important;
+  margin-bottom: 0 !important;
+  height: 14px !important; /* limit height */
+  overflow: hidden;
+}
+
+/* Reduce event height */
+.fc .fc-daygrid-event {
+  font-size: 0.6rem !important;
+  padding: 0 3px !important;
+  line-height: 1 !important;
+  max-height: 14px !important;
+  overflow: hidden;
+}
+
+/* Also limit row height */
+.fc .fc-daygrid-body {
+  max-height: 140px !important; /* 7 rows * 20px each = 140px */
+  overflow-y: hidden;
 }
 
 
-    .event-section {
-      width: 100%;
-      max-width: 520px;
-      margin: 0 auto 20px;
-      padding: 0 16px;
-    }
-
-    .event-section h2 {
-      font-size: 1.2rem;
-      color: #6a2fd7; /* medium purple */
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    /* NEW WRAPPER for scroll container with background */
-.event-card-wrapper {
-  background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
-  width: 100%;
-  max-width: 520px; /* Add this */
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  top: -15.33vh;
-  gap: 16px;
+/* Optionally reduce header height */
+.fc .fc-toolbar-title {
+  font-size: 1rem !important;
 }
 
 
-.event-heading {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-}
+  .event-card-wrapper {
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -15.33vh;
+    gap: 16px;
+  }
 
-.event-scroll-container {
-  display: flex;
-  overflow-x: auto;
-  gap: 12px;
-  width: 100%;
-  padding: 0 16px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 16px;
-}
+  .event-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    width: 100%;
+    padding: 0 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 16px;
+  }
 
+  .event-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
 
-.event-scroll-container::-webkit-scrollbar {
-  display: none;
-}
+  .event-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(73, 31, 218, 0.3);
+    width: 150px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
 
-.event-card {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
-}
+  .event-card:hover {
+    background-color: #9931e1;
+    color: white;
+  }
 
-    .event-card:hover {
-      background-color: #9931e1; /* accent */
-      color: white;
-    }
+  .event-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    display: block;
+  }
 
-    .event-card img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      display: block;
-    }
+  .event-card p {
+    margin: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+  }
 
-    .event-card p {
-      margin: 12px 0;
-      font-weight: 700;
-      font-size: 1rem;
-    }
+  /* Remove title text completely */
+  .fc-event:hover {
+    background-color: #a88beb !important; /* Lighter purple on hover */
+    cursor: pointer;
+  }
+</style>
 
-    .card-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      padding: 0 20px;
-    }
-
-    .top-cards {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .card {
-      background-color: #f5f5f5;
-      padding: 30px;
-      text-align: center;
-      text-decoration: none;
-      color: #333;
-      border-radius: 12px;
-      width: 140px;
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.25s ease, color 0.25s ease;
-    }
-
-    .card:hover {
-      background-color: #9931e1;
-      color: white;
-    }
-
-    .full-width-card {
-      width: 300px;
-    }
-
-  </style>
-
-  <main>
-<!-- Upcoming Events Scrollable Section with background wrapper -->
-<section class="event-section">
-  <div class="event-card-wrapper">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <%= link_to events_path, class: "btn btn-primary rounded-5", aria: { label: "View all events" } do %>
-        Your Upcoming Events
-      <% end %>
+<main>
+  <!-- Calendar Section: can be extracted to a partial _calendar.html.erb -->
+  <section class="event-section">
+    <div class="calendar-card-wrapper">
+      <h2 class="event-heading">Upcoming Events Calendar</h2>
+      <div id="calendar"></div>
     </div>
+  </section>
 
-    <div class="event-scroll-container">
-      <% if @upcoming_events.any? %>
-        <% @upcoming_events.each do |event| %>
-          <%= link_to event_path(event), class: "event-card-link" do %>
-            <div class="event-card">
-
-              <% if event.adventure.present? %>
-                <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>">
-                <p><%= event.adventure.name %></p>
-              <% else %>
-                <img src="<%= asset_path "category_images/#{event.category}.jpg" %>">
-                <p><%= event.location %></p>
-              <% end %>
-            </div>
-          <% end %>
+  <!-- Upcoming Events Scrollable Section: can be extracted to a partial _upcoming_events.html.erb -->
+  <section class="event-section">
+    <div class="event-card-wrapper">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <%= link_to events_path, class: "btn btn-primary rounded-5", aria: { label: "View all events" } do %>
+          Your Upcoming Events
         <% end %>
-      <% else %>
-        <p class="text-muted">No upcoming events yet.</p>
-      <% end %>
+      </div>
+
+      <div class="event-scroll-container">
+        <% if @upcoming_events.any? %>
+          <% @upcoming_events.each do |event| %>
+            <%= link_to event_path(event), class: "event-card-link" do %>
+              <div class="event-card">
+                <% if event.adventure.present? %>
+                  <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>" alt="<%= event.adventure.name %>">
+                  <p><%= event.adventure.name %></p>
+                <% else %>
+                  <img src="<%= asset_path "category_images/#{event.category}.jpg" %>" alt="<%= event.location %>">
+                  <p><%= event.location %></p>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <p class="text-muted">No upcoming events yet.</p>
+        <% end %>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
+
+<script>
+  document.addEventListener('turbo:load', () => {
+    const calendarEl = document.getElementById('calendar');
+    if (!calendarEl) return;
+
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      eventSources: [
+        {
+          url: '/events.json',
+          method: 'GET',
+          extraHeaders: {
+            'X-CSRF-Token': csrfToken,
+            'Accept': 'application/json'
+          },
+          failure() {
+            alert('There was an error while fetching events!');
+          }
+        }
+      ],
+      height: 'auto',
+      eventColor: '#6a2fd7',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      }
+    });
+
+    calendar.render();
+  });
+</script>
