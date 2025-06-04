@@ -6,8 +6,8 @@
     </div>
     <div class='adventure-index-text'>
       <h3><%= link_to name, event_adventure_path(adventure.event,adventure) %><h3>
-      <p><%= truncate(description, length: 100) %></p>
-      <p><%= link_to 'Choose adventure', event_adventure_path(event, adventure), data: {turbo_method: :patch}, class:"btn btn-primary" %>
+      <p><%= truncate(description, length: 100) %></p><p><%= link_to 'Choose Adventure', event_adventure_path(event, adventure), data: {turbo_method: :patch}, class:"btn btn-primary rounded-5" %>
+
     </div>
   </div>
 </div>

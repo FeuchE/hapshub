@@ -6,4 +6,14 @@
   &:hover {
     background-color: $light-purple;
   }
+
+  .mb-0 {
+    color: white;
+  }
+
+  .adventure-image {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -1,3 +1,13 @@
-<div class="group_index_card_container">
-  <%= link_to name, group_path(group), class: "btn btn-primary" %>
+<div class='card-wrapper'>
+  <div class= "group_index_card_container">
+    <%= link_to group_path(group), class: "event-card-vertical" do %>
+
+      <div
+        class="group-image"
+        style="background-image: url('<%= image_url %>')">
+      </div>
+      <div class="group-index-text">
+        <%= name %>
+      </div>
+    <% end %>
 </div>

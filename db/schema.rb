@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_02_154951) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_03_184436) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_154951) do
     t.text "description"
     t.string "location"
     t.string "image_url"
-    t.bigint "event_id", null: false
+    t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "place_id"
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_154951) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "notifications", force: :cascade do |t|

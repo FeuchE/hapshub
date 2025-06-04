@@ -3,7 +3,6 @@ class AdventuresController < ApplicationController
   before_action :set_adventure, only: %i[show update]
 
   def index
-    @event = Event.find(params[:event_id])
     if params[:query].present?
       @adventures = Adventure.search_by_name_and_description_and_location(params[:query]).where(event: @event)
     else
@@ -23,7 +22,6 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    @adventure
   end
 
   def update
@@ -38,13 +36,16 @@ class AdventuresController < ApplicationController
     end
   end
 
-private
+  private
+
   def set_event
     @event = Event.find(params[:event_id])
   end
+
   def set_adventure
     @adventure = @event.adventures.find(params[:id])
   end
+
   def adventure_params
     params.require(:adventure).permit(:name, :description, :location, :start_time, :end_time)
   end
