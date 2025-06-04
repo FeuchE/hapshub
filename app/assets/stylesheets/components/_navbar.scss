@@ -2,6 +2,11 @@
   max-height: 10vh;
   background-color: #6A2FD7;
   font-family: 'Kanit', sans-serif;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+
   img{
     height: 40px;
   }
@@ -50,7 +55,9 @@
 }
 
 
-
+.nav-buffer {
+  min-height: 10vh;
+}
 
 
 

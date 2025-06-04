@@ -5,6 +5,10 @@
     <%= link_to "New Event", groups_path, class: "btn btn-primary rounded-5" %>
   </div>
 
+  <div class="event-index-left-padding">
+    <%= link_to 'Back', :back, class:"link-text-padding-left" %>
+  </div>
+
   <% if @events.any? %>
     <div style="
       display: flex;
