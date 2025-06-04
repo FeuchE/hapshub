@@ -3,3 +3,14 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
+
+
+document.addEventListener("turbo:click", function (e) {
+  const link = e.target.closest("a[data-method='delete'][data-confirm]");
+  if (link) {
+    const confirmMessage = link.dataset.confirm;
+    if (!window.confirm(confirmMessage)) {
+      e.preventDefault();
+    }
+  }
+});
