@@ -62,5 +62,11 @@
       <% end %>
       </div>
 
+       <div class='delete-link'>
+        <%= link_to event_path(event), data: { turbo_method: :delete, confirm: "Are you sure?" }, class: "btn btn-link p-0 m-0 align-baseline" do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+    </div>
+
     </div>
   </div>
