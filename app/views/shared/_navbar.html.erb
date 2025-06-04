@@ -1,21 +1,9 @@
 <%# -------------------------- Desktop nav %>
 <nav class="navbar">
-  <div class="container-fluid d-flex align-items-center">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+
     <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
-      <div style="
-        width: 40px;
-        height: 40px;
-        background-color: red;
-        color: purple;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        font-size: 0.9rem;
-      ">
-        Haps
-      </div>
+      <%= image_tag "logo.png", alt: "Haps Logo", class: "logo-img" %>
     <% end %>
 
     <% if user_signed_in? %>
@@ -23,18 +11,18 @@
         <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
         <li class="nav-item"><%= link_to "Events", events_path, class: "nav-link" %></li>
         <li class="nav-item"><%= link_to "Groups", groups_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "Account", class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Account", edit_user_registration_path, class: "nav-link" %></li>
       </ul>
       <ul class="nav-logout d-none d-sm-flex">
-        <li class="nav-item"><%= link_to "log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
       </ul>
     <% else %>
       <ul class="navbar-nav d-none d-sm-flex">
-        <li class="nav-item"><%= link_to "login", new_user_session_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
       </ul>
     <% end %>
 
-    <%#-------------------------- Mobile Menu  %>
+    <%#-------------------------- Mobile Menu Button %>
     <button class="navbar-toggler d-block d-sm-none"
             type="button"
             data-bs-toggle="offcanvas"
@@ -44,26 +32,29 @@
     </button>
   </div>
 
+  <%#-------------------------- Mobile Menu %>
   <div class="offcanvas offcanvas-start offcanvas-fullscreen" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
     <div class="offcanvas-body mobile-nav d-flex flex-column">
       <button type="button" class="btn-close close-mobile-menu" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
       <% if user_signed_in? %>
         <div class="mobile-menu d-flex flex-column">
           <ul>
             <li class="nav-item"><%= link_to "HOME", root_path, class: "mobile-nav-link" %></li>
-            <li class="nav-item"><%= link_to "ACCOUNT", class: "mobile-nav-link" %></li>
+            <li class="nav-item"><%= link_to "ACCOUNT", edit_user_registration_path, class: "mobile-nav-link" %></li>
             <li class="nav-item"><%= link_to "EVENTS", events_path, class: "mobile-nav-link" %></li>
             <li class="nav-item"><%= link_to "GROUPS", groups_path, class: "mobile-nav-link" %></li>
           </ul>
         </div>
         <div class="mobile-links d-flex flex-column">
-          <button type="button" aria-label="Create a new event"><%= link_to "NEW EVENT", groups_path %></button>
+          <%= link_to "NEW EVENT", new_event_path, class: "btn btn-primary my-2" %>
+          <%= link_to "LOG OUT", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
         </div>
       <% else %>
         <div class="mobile-menu d-flex flex-column">
           <ul>
-            <li class="nav-item"><%= link_to "HOME", class: "mobile-nav-link" %></li>
-            <li class="nav-item"><%= link_to "LOGIN", new_user_session_path %></li>
+            <li class="nav-item"><%= link_to "HOME", root_path, class: "mobile-nav-link" %></li>
+            <li class="nav-item"><%= link_to "LOGIN", new_user_session_path, class: "mobile-nav-link" %></li>
           </ul>
         </div>
       <% end %>
