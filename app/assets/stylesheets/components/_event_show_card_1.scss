@@ -29,3 +29,18 @@
 .left-padding {
   padding-left: 20px;
 }
+
+.delete-link {
+  padding: 20px 10px 10px 350px;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  margin-left: auto;
+
+  i {
+    color: $gray;
+
+    &:hover {
+      color: $red;
+    }
+  }
+}
