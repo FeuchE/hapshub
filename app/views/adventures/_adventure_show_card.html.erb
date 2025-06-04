@@ -1,3 +1,7 @@
+<div class="link-text-padding-left">
+  <%= link_to 'Back to Adventures', event_adventures_path(event), class:"link-text" %>
+</div>
+
 <div class='card-wrapper'>
   <div class="adventure-card">
     <h2><%= name %></h2>
@@ -12,7 +16,4 @@
       <p><%= link_to 'Choose Adventure', event_adventure_path(event, adventure), data: {turbo_method: :patch}, class:"btn btn-primary rounded-5" %></p>
     </div>
   </div>
-</div>
-<div class="link-text">
-  <p><%= link_to 'Back to Adventures', event_adventures_path(event), class:"link-text" %></p>
 </div>

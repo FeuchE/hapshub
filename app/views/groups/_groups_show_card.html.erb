@@ -11,8 +11,6 @@
   Welcome to the coolest cyberpunk enthusiasts club! Join us to explore neon-lit nights and futuristic vibes.
 </div>
 
-<%= link_to "New event", new_group_event_path(group), class: "btn btn-primary" %>
-
 <!-- Flexible spacer to push upcoming events down -->
 <div style="flex-grow: 1;"></div>
 
@@ -27,7 +25,7 @@
       <% end %>
     <% end %>
     <div style="flex: 1 1 35%; background: #f8f9fa; display: flex; align-items: center; justify-content: center; padding: 8px;">
-      <%= link_to "View All Events", group_events_path(@group), class: "btn btn-primary btn-sm", style: "width: 100%; padding: 0.25rem 0;", aria: { label: "View all events" } %>
+      <%= link_to "View All Events", group_events_path(@group), class: "btn btn-primary btn-sm rounded-5", style: "width: 100%; padding: 0.25rem 0;", aria: { label: "View all events" } %>
     </div>
   </div>
 <% else %>
