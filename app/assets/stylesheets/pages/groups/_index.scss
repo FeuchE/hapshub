@@ -39,9 +39,10 @@
   position: relative;
   gap: 20px;
   overflow: hidden;
+  justify-content: center;
 }
 
-.group-card-wrapper h2 {
+.group-card-wrapper h1 {
   font-weight: bold;
   color: white;
 }
