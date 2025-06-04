@@ -1,37 +1,44 @@
 .notification-form-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 60vh; /* Adjust for vertical centering */
-  flex-direction: column;
-  text-align: center;
-}
-
-.field {
-  margin-bottom: 20px;
-  width: 100%;
   max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
 }
 
-textarea {
+.field textarea {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border-radius: 25px;
+  border-radius: 6px;
   border: 1px solid #ccc;
+  box-sizing: border-box;
+  resize: vertical;
 }
 
 .invite-button {
-  background-color: #aa11e7;
+  background-color: #9931e1;
   color: white;
   padding: 12px 24px;
   font-size: 16px;
   border: none;
-  border-radius: 15px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 .invite-button:hover {
-  background-color: #9931e1;
+  background-color: #6706ad;
+}
+
+.errors {
+  background-color: #ffe6e6;
+  color: #cc0000;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
 }
