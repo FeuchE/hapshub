@@ -1,5 +1,9 @@
-<div class="link-text-padding-left">
-  <%= link_to 'Back to Groups', groups_path, class:"link-text" %>
+<div class="group-links d-flex justify-content-between align-items-center">
+  <div class="link-text-padding-left">
+    <%= link_to 'Back to Groups', groups_path, class:"link-text" %>
+  </div>
+
+  <%= link_to "New event", new_group_event_path(@group), class: "btn btn-primary rounded-5 padding" %>
 </div>
 
 <%= render 'groups_show_card',
