@@ -1,89 +1,62 @@
 <div class="group_show_card_container">
-
   <section class="group_show_container">
-    <div class="top-card"
-        style="background-image: url('<%= image_url %>')">
+    <div class="top-card" style="background-image: url('<%= image_url %>')">
       <h1><%= name %></h1>
-      <%# Cyberpunk Skyline Group %>
     </div>
 
-    <div class="middle-card">
-      Welcome to the coolest cyberpunk enthusiasts club! Join us to explore neon-lit nights and futuristic vibes.
-    </div>
-    <%= link_to "New event", new_group_event_path(group), class: "btn btn-primary" %>
-    <!-- Group Events Card -->
-    <% if @upcoming_events.any? %>
-      <% event = @upcoming_events.first %>
-      <div class="event-card">
-        <!-- LEFT SIDE: Image + Text -->
-        <div class="event-left" style="flex: 1; display: flex;">
-          <div class="event-image">
-            <% if event.adventure.present? %>
-              <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>" alt="<%= event.name %>" style="width: 100%; height: 100%; object-fit: cover;">
-            <% else %>
-              <img src="https://via.placeholder.com/350x180?text=No+Image" alt="No image available" style="width: 100%; height: 100%; object-fit: cover;">
-            <% end %>
-          </div>
-          <div class="event-text">
-            <% if event.adventure.present? %>
-              <h3><%= event.adventure.name %></h3>
-            <% else %>
-              <h3><%= event.location %></h3>
-            <% end %>
-          </div>
-        </div>
+  <!-- Other content above -->
 
-        <!-- RIGHT SIDE: Button -->
-        <div class="event-right" style="width: 200px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; padding: 12px;">
-          <%= link_to "View All Events", group_events_path(@group), class: "btn btn-primary btn-sm", style: "width: 100%; text-align: center;" %>
-        </div>
-      </div>
-    <% else %>
-      <p>No upcoming events</p>
-    <% end %>
-
-
-    <div class="reptile-scroll-container" id="reptileScroll">
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%23491fda'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Green Anole
-          </text>
-        </svg>" alt="Green Anole" />
-
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%239a3bd9'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Garden Lizard
-          </text>
-        </svg>" alt="Garden Lizard" />
-
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%23736dc1'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Leopard Gecko
-          </text>
-        </svg>" alt="Leopard Gecko" />
-
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%236f5bc5'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Bearded Dragon
-          </text>
-        </svg>" alt="Bearded Dragon" />
-
-      <img src="data:image/svg+xml;utf8,
-        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
-          <circle cx='50' cy='50' r='50' fill='%234780b4'/>
-          <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
-            Chameleon
-          </text>
-        </svg>" alt="Chameleon" />
-    </div>
-  </section>
-
+<div class="middle-card">
+  Welcome to the coolest cyberpunk enthusiasts club! Join us to explore neon-lit nights and futuristic vibes.
 </div>
+
+<%= link_to "New event", new_group_event_path(group), class: "btn btn-primary" %>
+
+<!-- Flexible spacer to push upcoming events down -->
+<div style="flex-grow: 1;"></div>
+
+<% if @upcoming_events.any? %>
+  <% event = @upcoming_events.first %>
+  <div style="display: flex; width: 100%; max-width: 520px; height: 200px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 5px rgba(0,0,0,0.1); font-size: 0.9rem;">
+    <%= link_to event_path(event), style: "flex: 1 1 65%; display: block; text-decoration: none; color: inherit;" do %>
+      <% if event.adventure.present? %>
+        <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>" alt="<%= event.name %>" style="width: 100%; height: 100%; object-fit: cover;" />
+      <% else %>
+        <img src="https://via.placeholder.com/350x180?text=No+Image" alt="No image available" style="width: 100%; height: 100%; object-fit: cover;" />
+      <% end %>
+    <% end %>
+    <div style="flex: 1 1 35%; background: #f8f9fa; display: flex; align-items: center; justify-content: center; padding: 8px;">
+      <%= link_to "View All Events", group_events_path(@group), class: "btn btn-primary btn-sm", style: "width: 100%; padding: 0.25rem 0;", aria: { label: "View all events" } %>
+    </div>
+  </div>
+<% else %>
+  <p>No upcoming events</p>
+<% end %>
+
+  </section>
+</div>
+
+<% reptiles = [
+  { name: "Green Anole", color: "#491fda" },
+  { name: "Garden Lizard", color: "#9a3bd9" },
+  { name: "Leopard Gecko", color: "#736dc1" },
+  { name: "Bearded Dragon", color: "#6f5bc5" },
+  { name: "Chameleon", color: "#4780b4" }
+] %>
+
+<div class="reptile-scroll-container" id="reptileScroll">
+  <% reptiles.each do |reptile| %>
+    <% svg = <<~SVG
+      <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+        <circle cx='50' cy='50' r='50' fill='#{reptile[:color]}'/>
+        <text x='50%' y='55%' font-family='Arial, sans-serif' font-size='14' fill='white' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>
+          #{reptile[:name]}
+        </text>
+      </svg>
+    SVG
+    %>
+    <img src="data:image/svg+xml;utf8,<%= ERB::Util.url_encode(svg.strip) %>" alt="<%= reptile[:name] %>" />
+  <% end %>
+</div>
+
+<div class="reptile-footer-spacer"></div>
