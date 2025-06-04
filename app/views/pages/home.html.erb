@@ -170,7 +170,7 @@
                 <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>">
                 <p><%= event.adventure.name %></p>
               <% else %>
-                <%= image_tag(event.photo_url.presence || "https://via.placeholder.com/180x120", alt: event.name) %>
+                <img src="<%= asset_path "category_images/#{event.category}.jpg" %>">
                 <p><%= event.location %></p>
               <% end %>
             </div>

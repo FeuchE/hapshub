@@ -36,7 +36,7 @@
           <%= event.adventure.location %>
         </p>
       <% else %>
-
+        <img src="<%= asset_path "category_images/#{event.category}.jpg" %>">
         <div class="mb-4">
           <%= link_to "✨ Choose your adventure!", event_adventures_path(event), class: "btn btn-outline-secondary" %>
         </div>
