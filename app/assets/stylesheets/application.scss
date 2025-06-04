@@ -32,7 +32,8 @@ $danger: #9a1c48;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -228,6 +229,13 @@ main {
     color: white;
     border-color: $accent;
   }
+}
+
+.logo-img {
+  height: 40px; /* original navbar height */
+  width: auto;
+  transform: scale(1.8); /* scale up the image */
+  transform-origin: left center; /* keeps it aligned */
 }
 
 // Final partials
