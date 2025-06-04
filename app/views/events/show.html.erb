@@ -1,16 +1,14 @@
 <div class="container">
   <h1>About Your Event</h1>
+
   <%= render 'event_show_card_1',
-
-    event: @event,
-    group: @event.group,
-    start_time: @event.start_time,
-    end_time: @event.end_time,
-    location: @event.location,
-    category: @event.category
-
+      event: @event,
+      group: @event.group,
+      start_time: @event.start_time,
+      end_time: @event.end_time,
+      location: @event.location,
+      category: @event.category
   %>
 
-  </div>
-
+  <%= button_to "Delete Event", event_path(@event), method: :delete, data: { confirm: "Are you sure you want to delete this event?" }, class: "btn btn-danger" %>
 </div>

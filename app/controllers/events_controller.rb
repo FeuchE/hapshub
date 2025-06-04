@@ -1,13 +1,17 @@
 class EventsController < ApplicationController
   before_action :set_group, only: %i[new create show]
+  before_action :set_event, only: %i[show destroy]
+  before_action :authorize_event_owner!, only: %i[destroy]
 
   def index
-    if @group
-      @events = @group.events # You can add `.upcoming` scope if defined
-    else
-      @events = Event.all # or Event.upcoming if you create that scope
-    end
+  if params[:group_id].present?
+    @group = Group.find(params[:group_id])
+    @events = @group.events
+  else
+    @events = Event.all
   end
+end
+
 
   def show
     @event = Event.find(params[:id])
@@ -28,10 +32,25 @@ class EventsController < ApplicationController
     end
   end
 
+def destroy
+  @event.destroy
+  redirect_to events_path, notice: "Event deleted successfully."
+end
+
   private
 
   def set_group
     @group = Group.find(params[:group_id]) if params[:group_id].present?
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  def authorize_event_owner!
+    unless @event.user == current_user
+      redirect_to event_path(@event), alert: "You're not authorized to delete this event."
+    end
   end
 
   def event_params

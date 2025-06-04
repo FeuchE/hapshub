@@ -4,33 +4,19 @@ Rails.application.routes.draw do
 
   resources :groups, only: %i[index show] do
     resources :events
+    resources :user_groups, only: %i[create destroy]
   end
 
   resources :events, except: %i[create] do
     resources :adventures, only: %i[index show create update]
-
     resources :notifications, only: %i[new create]
   end
-  
+
   resources :notifications
-  
+
   resources :adventures, only: %i[show] do
     resources :votes, only: %i[create]
   end
 
-
-
-  # TODO: This route is currently disabled. Uncomment and configure if calendar functionality is needed in the future.
-  # resources :calendars
-
-  resources :groups, only: %i[index show] do
-    resources :user_groups, only: %i[create destroy]
-  end
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
