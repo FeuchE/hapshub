@@ -1,0 +1,55 @@
+.notification-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 0.2s ease;
+}
+
+.notification-card:hover {
+  transform: translateY(-3px);
+}
+
+.notification-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.custom-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+
+
+
+
+
+/* Green button for "I'm Coming!" */
+.custom-button.coming {
+  background-color: #9931e1;
+}
+
+.custom-button.coming:hover {
+  background-color: #581c83;
+}
+
+/* Red button for "Can't Make It" */
+.custom-button.not-coming {
+  background-color: #f44336;
+}
+
+.custom-button.not-coming:hover {
+  background-color: #904b4a;
+}

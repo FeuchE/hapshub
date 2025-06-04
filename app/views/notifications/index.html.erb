@@ -1,16 +1,23 @@
 <h1>My Event Notifications</h1>
 
 <% @notifications.each do |notification| %>
-  <div class="notification" style="border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;">
-    <p><strong>Event:</strong> <%= link_to notification.event.name, event_path(notification.event) %></p>
+  <div class="notification-card">
+    <p><strong>Event:</strong>
+      <%= link_to(
+        notification.event.adventure.present? ? notification.event.adventure.name : notification.event.location,
+        event_path(notification.event)
+      ) %>
+    </p>
+
     <p><strong>Message:</strong> <%= notification.message %></p>
 
-
     <% if notification.attending.nil? %>
-      <%= button_to 'Accept', notification_path(notification, attending: true), method: :patch, class: "btn btn-success" %>
-      <%= button_to 'Reject', notification_path(notification, attending: false), method: :patch, class: "btn btn-danger" %>
-    <% else  %>
-      <%= notification.attending? ? "You are attending!" : "You are not attending!" %>
+      <div class="notification-buttons">
+        <%= button_to "I'm Coming!", notification_path(notification, attending: true), method: :patch, class: "custom-button coming" %>
+        <%= button_to "Can't Make It", notification_path(notification, attending: false), method: :patch, class: "custom-button not-coming" %>
+      </div>
+    <% else %>
+      <p><strong>Status:</strong> <%= notification.attending? ? "You are attending!" : "You are not attending!" %></p>
     <% end %>
   </div>
 <% end %>
