@@ -1,17 +1,14 @@
 .event-section {
-  margin: 0;
-  font-family: sans-serif;
-  background-color: #fbf7ea;
-  color: #491fda; /* Replace $dark-purple with actual color */
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  flex: 1;
   align-items: center;
   justify-content: center;
-  padding: 20px 16px 0;
+  height: calc(100vh - 60px);
   width: 100%;
-  max-width: 520px;
+  background-color: #fbf7ea;
+  font-family: sans-serif;
+  color: #491fda;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .event-section h2 {
