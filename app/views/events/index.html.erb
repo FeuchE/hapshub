@@ -1,6 +1,10 @@
 <div style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem; font-family: Arial, sans-serif;">
   <h1 style="margin-bottom: 1.5rem; font-weight: 700; font-size: 2rem; text-align: center;">Events</h1>
 
+  <div class="new-event-button">
+    <%= link_to "New Event", groups_path, class: "btn btn-primary rounded-5" %>
+  </div>
+
   <% if @events.any? %>
     <div style="
       display: flex;
