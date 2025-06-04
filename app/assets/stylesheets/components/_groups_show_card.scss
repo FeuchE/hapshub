@@ -1,6 +1,6 @@
 .group_show_container {
   margin: 0;
-  padding: 20px 20px 80px; /* bottom padding to avoid footer overlap */
+  padding: 20px 20px 180px; /* 110px scroll + ~70px footer + buffer */
   font-family: sans-serif;
   background-color: #fbf7ea;
   color: #491fda;
@@ -43,7 +43,7 @@
   background-color: #f5f5f5;
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   color: #491fda;
   font-weight: 600;
   margin-bottom: 20px;
@@ -68,7 +68,7 @@
 .full-width-card .left {
   width: 75%;
   height: 100%;
-  background-image: url('https://via.placeholder.com/600x300?text=UV+Lights');
+  background-image: url("https://via.placeholder.com/600x300?text=UV+Lights");
   background-size: cover;
   background-position: center;
 }
@@ -104,74 +104,134 @@
   margin-bottom: 20px;
 }
 .btn.btn-primary {
-  padding: 12px 10px 12px 10px;
+  min-width: 140px; /* minimum width */
+  min-height: 50px; /* minimum height */
+  padding: 0 20px; /* horizontal padding for breathing room */
   background-color: #491fda;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px; /* smooth rounded corners */
   font-weight: bold;
+  font-size: 1.1rem;
   text-decoration: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap; /* prevent text wrapping */
+}
+
+/* Smaller screens tweak */
+@media (max-width: 480px) {
+  .btn.btn-primary {
+    min-width: 120px;
+    min-height: 45px;
+    font-size: 1rem;
+    padding: 0 16px;
+  }
 }
 
 .event-card {
   display: flex;
-  width: 100%;
-  max-width: 900px;
-  height: 200px;
-  border-radius: 12px;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 800px;
 }
 
 .event-left {
   display: flex;
+  flex-direction: row;
   flex: 1;
-  height: 100%;
 }
 
 .event-image {
-  width: 200px;
-  height: 100%;
+  width: 180px;
+  height: 180px;
   flex-shrink: 0;
-  overflow: hidden;
 }
 
 .event-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .event-text {
-  padding: 20px;
+  padding: 1rem;
   display: flex;
   align-items: center;
 }
 
+.event-text h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.event-right {
+  width: 200px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  flex-shrink: 0;
+}
+
+.view-all-btn {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background-color: #0056b3;
+}
+
+.no-events-msg {
+  margin-top: 1rem;
+  text-align: center;
+  color: #666;
+}
 
 /* Reptile scroll container - default (scrolls normally) */
 .reptile-scroll-container {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 520px;
-  margin: 0 auto 10px auto;
-  display: flex;
-  overflow-x: auto;
-  gap: 12px;
-  padding-left: 10px;
-  padding-right: 10px;
+  margin: 40px auto 20px auto;
   height: 110px;
+  padding: 0 10px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
   background-color: #fbf7ea;
-  scrollbar-width: thin;
-  -ms-overflow-style: auto;
+  box-shadow: 0 -1px 8px rgba(73, 31, 218, 0.15);
   scroll-behavior: smooth;
   box-sizing: border-box;
-  border-radius: 0;
-  transition: box-shadow 0.3s ease;
+  border-radius: 12px;
+  scrollbar-width: thin;
+  -ms-overflow-style: auto;
 }
 
-/* Scrollbar styles */
 .reptile-scroll-container::-webkit-scrollbar {
   height: 8px;
 }
@@ -183,14 +243,18 @@
   border-radius: 4px;
 }
 
-/* Fixed class applied near footer */
-.reptile-scroll-container.fixed {
-  position: fixed;
-  bottom: 60px; /* height of footer */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 520px;
-  box-shadow: 0 -1px 8px rgba(73, 31, 218, 0.15);
-  z-index: 1100;
-  background-color: #fbf7ea;
+@media (max-width: 600px) {
+  .reptile-scroll-container {
+    height: 90px;
+    gap: 8px;
+  }
+
+  .group_show_container {
+    padding-bottom: 160px; /* adjust based on smaller scroll bar */
+  }
+}
+
+.reptile-footer-spacer {
+  height: 60px;
+  width: 100%;
 }
