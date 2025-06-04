@@ -1,63 +1,42 @@
-<div style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem; font-family: Arial, sans-serif;">
-  <h1 style="margin-bottom: 1.5rem; font-weight: 700; font-size: 2rem; text-align: center;">Events</h1>
+<div class="events-container">
+  <h1>Events</h1>
 
   <div class="new-event-button">
     <%= link_to "New Event", groups_path, class: "btn btn-primary rounded-5" %>
   </div>
 
   <% if @events.any? %>
-    <div style="
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    ">
+    <div class="events-grid">
       <% @events.each do |event| %>
-        <div style="
-          flex: 1 1 calc(33.333% - 1rem);
-          min-width: 280px;
-          max-width: 350px;
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          transition: box-shadow 0.3s ease;
-        "
-        onmouseover="this.style.boxShadow='0 6px 15px rgba(0,0,0,0.2)';"
-        onmouseout="this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)';">
-
-          <!-- Event image -->
+        <div class="event-card">
           <% if event.adventure.present? %>
             <div class="adventure-image">
-              <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>" alt="<%= event.name %>" style="width: 100%; height: 180px; object-fit: cover;">
+              <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>" alt="<%= event.name %>">
             </div>
           <% else %>
             <img src="<%= asset_path "category_images/#{event.category}.jpg" %>">
           <% end %>
 
-          <!-- Event details -->
-          <div style="padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-            <h2 style="font-size: 1.25rem; margin: 0 0 0.5rem 0; font-weight: 600; color: #333;"><%= event.name %></h2>
+          <div class="event-details">
+            <h2><%= event.name %></h2>
 
             <% if event.adventure.present? %>
-              <h2 style="font-size: 1.25rem; margin: 0 0 0.5rem 0; font-weight: 600; color: #333;"><%= event.adventure.name %></h2>
+              <h2><%= event.adventure.name %></h2>
             <% else %>
-              <p style="margin: 0 0 1rem 0; color: #666;"><%= event.location %></p>
+              <p><%= event.location %></p>
             <% end %>
 
-            <p style="margin: 0 0 1rem 0; color: #666;">
+            <p>
               <strong>Starts:</strong> <%= event.start_time.strftime("%b %d, %Y %l:%M %p") %><br>
               <strong>Ends:</strong> <%= event.end_time.strftime("%b %d, %Y %l:%M %p") %>
             </p>
 
-            <%= link_to 'View Details', event_path(event), style: "color: white; text-decoration: none;", class: "btn btn-primary rounded-5" %>
+            <%= link_to 'View Details', event_path(event), class: "btn btn-primary rounded-5" %>
           </div>
         </div>
       <% end %>
     </div>
   <% else %>
-    <p style="text-align: center; color: #666; margin-top: 2rem;">No events available.</p>
+    <p class="text-center text-muted mt-4">No events available.</p>
   <% end %>
 </div>
