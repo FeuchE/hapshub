@@ -7,9 +7,12 @@
     </div>
 
     <div class="adventure-text">
-      <p><%= description %>
+      <p><%= description %></p>
       <p><strong>Location: </strong> <%= location %></p>
-      <p><%= link_to 'Choose adventure', event_adventure_path(@event, @adventure), data: {turbo_method: :patch}, class:"btn btn-primary rounded-5" %>
+      <p><%= link_to 'Choose Adventure', event_adventure_path(event, adventure), data: {turbo_method: :patch}, class:"btn btn-primary rounded-5" %></p>
     </div>
   </div>
+</div>
+<div class="link-text">
+  <p><%= link_to 'Back to Adventures', event_adventures_path(event), class:"link-text" %></p>
 </div>

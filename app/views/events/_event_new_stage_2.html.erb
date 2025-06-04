@@ -1,5 +1,9 @@
 <div class="event_form_container">
 
-    <%= f.input :location %>
+    <%= f.input :location, placeholder: "Please enter location" %>
 
+</div>
+
+<div class="next_button">
+  <%= link_to 'Next', new_group_event_path, class:"btn btn-primary rounded-5" %>
 </div>
