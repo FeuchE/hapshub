@@ -22,6 +22,10 @@
         <strong>🏷️ Category:</strong>
         <%= category.presence || "Uncategorized" %>
       </p>
+      <p class="mb-2">
+        <strong>👥 Group: </strong>
+        <%= group.name %>
+      </p>
 
       <% if event.adventure.present? %>
         <div class="adventure-image">
@@ -59,3 +63,6 @@
 
     </div>
   </div>
+<div class="link-text">
+  <p><%= link_to 'Back to Events', events_path, class:"link-text" %></p>
+</div>
