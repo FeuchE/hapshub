@@ -51,7 +51,7 @@
           </ul>
         </div>
         <div class="mobile-links d-flex flex-column">
-          <%= link_to "NEW EVENT", new_event_path, class: "btn btn-primary my-2" %>
+          <%= link_to "NEW EVENT", groups_path, class: "btn btn-primary my-2" %>
          <%= link_to "LOG OUT", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-primary" %>
         </div>
       <% else %>
