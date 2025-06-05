@@ -63,6 +63,7 @@
   background-color: #6a2fd7;
   justify-content: center;
   counter-reset: section;
+  z-index: 1001;
   .mobile-menu {
     height: 40vh;
     ul {
