@@ -8,23 +8,23 @@
 
     <div class="card-body">
       <p class="mb-2">
-        <strong>📅 Start Time:</strong>
+        <strong>📅 </strong>
         <%= start_time.strftime("%B %d, %Y %I:%M %p") %>
       </p>
       <p class="mb-2">
-        <strong>📅 End Time:</strong>
+        <strong>📅 </strong>
         <%= end_time.strftime("%B %d, %Y %I:%M %p") %>
       </p>
       <p class="mb-2">
-        <strong>📍 Location:</strong>
+        <strong>📍 </strong>
         <%= location.presence || "TBD" %>
       </p>
       <p class="mb-3">
-        <strong>🏷️ Category:</strong>
-        <%= category.presence || "Uncategorized" %>
+        <strong>🏷️ </strong>
+        <%= category.presence.humanize|| "Uncategorized" %>
       </p>
       <p class="mb-2">
-        <strong>👥 Group: </strong>
+        <strong>👥 </strong>
         <%= group.name %>
       </p>
 
@@ -33,11 +33,11 @@
           <img src="<%= "https://places.googleapis.com/v1/#{event.adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>">
         </div>
         <p class="mb-2">
-          <strong>🗺️ Adventure Name:</strong>
+          <strong>🗺️ </strong>
           <%= event.adventure.name %>
         </p>
         <p class="mb-4">
-          <strong>📌 Adventure Address:</strong>
+          <strong>📌 </strong>
           <%= event.adventure.location %>
         </p>
       <% else %>
