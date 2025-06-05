@@ -60,67 +60,93 @@
 
 // MOBILE NAVBAR
 .mobile-nav {
-  background-color: #6a2fd7;
-  justify-content: center;
-  counter-reset: section;
-  z-index: 1001;
-  .mobile-menu {
-    height: 40vh;
-    ul {
-      width: 100%;
+    background-color: #6a2fd7;
+    justify-content: center;
+    counter-reset: section;
+    z-index: 1001;
+
+    .mobile-menu {
+        height: 40vh;
+        ul {
+            width: 100%;
+        }
+        .nav-item {
+            display: flex;
+            position: relative;
+            align-items: center;
+            width: 100%;
+            justify-content: flex-end;
+            padding: 1.2rem;
+            font-size: 1.5rem;
+            color: white;
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.4);
+        }
+        li::before {
+            content: counter(section, decimal-leading-zero);
+            counter-increment: section;
+            margin-right: 0.5rem;
+            font-size: 1rem;
+            color: #f2f2f250;
+        }
+        li:first-child {
+            border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+        }
     }
+
     .nav-item {
-      display: flex;
-      position: relative;
-      align-items: center;
-      width: 100%;
-      justify-content: flex-end;
-      padding: 1.2rem;
-      font-size: 1.5rem;
-      color: white;
-      border-bottom: 1.5px solid rgba(255, 255, 255, 0.4);
+        display: flex;
+        position: relative;
+        align-items: center;
+        width: 100%;
+        justify-content: flex-end;
+        padding: 1.2rem;
+        font-size: 1.5rem;
+        color: white;
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.4);
     }
     li::before {
-      content: counter(section, decimal-leading-zero);
-      counter-increment: section;
-      margin-right: 0.5rem;
-      font-size: 1rem;
-      color: #f2f2f250;
+        content: counter(section, decimal-leading-zero);
+        counter-increment: section;
+        margin-right: 0.5rem;
+        font-size: 1rem;
+        color: #f2f2f250;
     }
     li:first-child {
-      border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+        border-top: 1.5px solid rgba(255, 255, 255, 0.4);
     }
-  }
+
 }
 
-.mobile-links {
-    padding-top: 2rem;
-    width: 100%;
-    align-items: center;
-    gap: 1rem;
-    a {
-        width: 50%;
-        padding: 0.8rem 0.6rem;
-        font-size: 1.3rem;
+
+    .mobile-links {
+        padding-top: 2rem;
+        width: 100%;
+        align-items: center;
+        gap: 1rem;
+        a {
+            width: 50%;
+            padding: 0.8rem 0.6rem;
+            font-size: 1.3rem;
+            border-radius: 16px;
+            border: none;
+            color: #db31e1;
+        }
+        a:first-child {
+            background-color: #ec2ae2;
+            color: white;
+        }
+    }
+
+    .close-mobile-menu {
+        position: absolute;
+        opacity: 1;
+        bottom: 2rem;
+        right: 2rem;
+        font-size: 1rem;
+        padding: 1rem;
+        background-color: white;
         border-radius: 16px;
         border: none;
-        color: #db31e1;
+        background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23DB31E1' d='M.293.293a1 1 0 011.414 0L8 6.586l6.293-6.293a1 1 0 011.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3E%3C/svg%3E");
     }
-    a:first-child {
-        background-color: #ec2ae2;
-        color: white;
-    }
-}
-
-.close-mobile-menu {
-    position: absolute;
-    opacity: 1;
-    bottom: 2rem;
-    right: 2rem;
-    font-size: 1rem;
-    padding: 1rem;
-    background-color: white;
-    border-radius: 16px;
-    border: none;
-    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23DB31E1' d='M.293.293a1 1 0 011.414 0L8 6.586l6.293-6.293a1 1 0 011.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3E%3C/svg%3E");
 }
