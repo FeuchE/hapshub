@@ -3,10 +3,10 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 100vh;
+  // min-height: 100vh;
   background-color: #fbf7ea;
   font-family: sans-serif;
-  padding: 40px 16px;
+  padding: 10px 16px;
   box-sizing: border-box;
 }
 
@@ -20,7 +20,8 @@
 }
 
 /* Back Button Styles */
-.back-button-aligned {
+.groups-back-button-aligned {
+  margin-left: 10px;
   margin-bottom: 10px;
 }
 
@@ -28,7 +29,7 @@
   color: white;
   background-color: #491fda;
   padding: 8px 16px;
-  border-radius: 20px;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;

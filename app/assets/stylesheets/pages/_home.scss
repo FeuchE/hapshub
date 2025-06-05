@@ -145,13 +145,13 @@ main {
   padding: 0 16px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  // gap: 28px;
 }
 
 /* Cards */
 .card {
   background: white;
-  border-radius: 32px;
+  border-radius: 20px;
   box-shadow: 0 4px 10px rgba(73, 31, 218, 0.15);
   padding: 28px 40px;
   text-align: center;
@@ -231,7 +231,7 @@ main {
 .event-card p {
   margin: 0;
   padding: 10px;
-  font-size: 0.9rem;
+  font-size: 20px;
   color: var(--dark-purple);
   font-weight: 600;
   flex-grow: 1;
