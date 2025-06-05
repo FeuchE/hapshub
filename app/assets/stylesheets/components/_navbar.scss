@@ -60,35 +60,35 @@
 
 // MOBILE NAVBAR
 .mobile-nav {
-    background-color: #6a2fd7;
-    justify-content: center;
-    counter-reset: section;
-    .mobile-menu {
-        height: 40vh;
-        ul {
-            width: 100%;
-        }
-        .nav-item {
-            display: flex;
-            position: relative;
-            align-items: center;
-            width: 100%;
-            justify-content: flex-end;
-            padding: 1.2rem;
-            font-size: 1.5rem;
-            color: white;
-            border-bottom: 1.5px solid rgba(255, 255, 255, 0.4);
-        }
-        li::before {
-            content: counter(section, decimal-leading-zero);
-            counter-increment: section;
-            margin-right: 0.5rem;
-            font-size: 1rem;
-            color: #f2f2f250;
-        }
-        li:first-child {
-            border-top: 1.5px solid rgba(255, 255, 255, 0.4);
-        }
+  background-color: #6a2fd7;
+  justify-content: center;
+  counter-reset: section;
+  z-index: 1001;
+  .mobile-menu {
+    height: 40vh;
+    ul {
+      width: 100%;
+    }
+    .nav-item {
+      display: flex;
+      position: relative;
+      align-items: center;
+      width: 100%;
+      justify-content: flex-end;
+      padding: 1.2rem;
+      font-size: 1.5rem;
+      color: white;
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.4);
+    }
+    li::before {
+      content: counter(section, decimal-leading-zero);
+      counter-increment: section;
+      margin-right: 0.5rem;
+      font-size: 1rem;
+      color: #f2f2f250;
+    }
+    li:first-child {
+      border-top: 1.5px solid rgba(255, 255, 255, 0.4);
     }
 }
 
