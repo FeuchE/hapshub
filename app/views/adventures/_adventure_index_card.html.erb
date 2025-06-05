@@ -5,9 +5,11 @@
         class="adventure-image"
         style="background-image: url('<%= "https://places.googleapis.com/v1/#{adventure.photo_resource}/media?maxHeightPx=400&maxWidthPx=400&key=#{ENV["GOOGLE_API_KEY"]}" %>');">
       </div>
-      <div class='adventure-index-text'>
-        <h3><%= name %><h3>
-        <p><%= truncate(description, length: 100) %></p>
+      <div class='adventure-index-content'>
+        <div class='adventure-index-text'>
+          <h3><%= name %><h3>
+          <p><%= truncate(description, length: 100) %></p>
+        </div>
       </div>
     </div>
   <% end %>
