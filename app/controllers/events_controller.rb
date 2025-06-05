@@ -8,9 +8,9 @@ class EventsController < ApplicationController
 def index
   if params[:group_id]
     @group = Group.find(params[:group_id])
-    @events = @group.events
+    @events = @group.events.order(start_time: :asc)
   else
-    @events = Event.all
+    @events = Event.order(start_time: :asc)
   end
 
   respond_to do |format|
@@ -28,6 +28,7 @@ def index
     end
   end
 end
+
 
 
   def show
@@ -68,13 +69,9 @@ end
     @group = Group.find(params[:group_id]) if params[:group_id].present?
   end
 
-def set_event
-  @group = Group.find(params[:group_id]) if params[:group_id]
-  @event = @group ? @group.events.find(params[:id]) : Event.find(params[:id])
-rescue ActiveRecord::RecordNotFound
-  redirect_to root_path, alert: "Event not found."
-end
-
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
   def authorize_event_owner!
     unless @event.user == current_user
