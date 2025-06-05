@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_03_184436) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_05_190917) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_184436) do
     t.text "description"
     t.string "location"
     t.string "image_url"
-    t.bigint "event_id"
+    t.bigint "event_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "place_id"
@@ -49,6 +49,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_03_184436) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "adventure_id"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
     t.index ["adventure_id"], name: "index_events_on_adventure_id"
     t.index ["group_id"], name: "index_events_on_group_id"
     t.index ["user_id"], name: "index_events_on_user_id"
