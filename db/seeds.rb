@@ -32,13 +32,30 @@ user2 = User.find_or_create_by!(email: 'user2@username.com') do |u|
 end
 puts "User created/found: #{user2.email}"
 
+user3 = User.find_or_create_by!(email: 'user3@username.com') do |u|
+  u.password = 'password'
+  u.username = 'Nate'
+end
+puts "User created/found: #{user3.email}"
+
+user4 = User.find_or_create_by!(email: 'user4@username.com') do |u|
+  u.password = 'password'
+  u.username = 'Matt'
+end
+puts "User created/found: #{user4.email}"
+
+
 # 2) Two groups
 group1 = Group.find_or_create_by!(name: 'Cyberpunk Skyline Group', image_url: "https://img.freepik.com/premium-photo/fashionable-cyberpunk-crew-people-street-night-city-future-cyberpunk-city_250484-1473.jpg")
 group1.user_groups.create(user: user)
 group1.user_groups.create(user: user2)
+group1.user_groups.create(user: user3)
+group1.user_groups.create(user: user4)
 group2 = Group.find_or_create_by!(name: 'Synthwave Circle Group', image_url: "https://img.freepik.com/premium-photo/retro-disco-ball-background-with-sparkling-mirrored-disco-ball_1282204-1409.jpg")
 group2.user_groups.create(user: user)
 group2.user_groups.create(user: user2)
+group2.user_groups.create(user: user3)
+group2.user_groups.create(user: user4)
 puts "Groups created/found: #{group1.name}, #{group2.name}"
 
 # 3) Create placeholder Events first (since Adventure needs an event_id)
@@ -117,4 +134,4 @@ puts "Groups created/found: #{group1.name}, #{group2.name}"
 # )
 # puts "Events updated with adventure associations."
 
-puts "Seeding complete! 2 users, 2 groups."
+puts "Seeding complete! 4 users, 2 groups."
