@@ -68,9 +68,13 @@ end
     @group = Group.find(params[:group_id]) if params[:group_id].present?
   end
 
-  def set_event
-    @event = Event.find(params[:id])
-  end
+def set_event
+  @group = Group.find(params[:group_id]) if params[:group_id]
+  @event = @group ? @group.events.find(params[:id]) : Event.find(params[:id])
+rescue ActiveRecord::RecordNotFound
+  redirect_to root_path, alert: "Event not found."
+end
+
 
   def authorize_event_owner!
     unless @event.user == current_user
