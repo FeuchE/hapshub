@@ -14,4 +14,9 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }
+
+  scope :seed_users, -> {
+    where(email: ['user@username.com', 'user2@username.com', 'user3@username.com', 'user4@username.com'])
+  }
+
 end

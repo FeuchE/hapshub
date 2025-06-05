@@ -5,6 +5,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @upcoming_events = @group.events # You can add filtering here if needed
+   @upcoming_events = @group.events
+                          .where('start_time >= ?', Time.current)
+                          .order(:start_time) # You can add filtering here if needed
   end
 end
