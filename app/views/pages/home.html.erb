@@ -328,7 +328,8 @@
       initialView: 'dayGridMonth',
       eventSources: [
         {
-          url: '/events.json',
+          url: "<%= @group ? group_events_path(@group, format: :json) : events_path(format: :json) %>",
+
           method: 'GET',
           extraHeaders: {
             'X-CSRF-Token': csrfToken,

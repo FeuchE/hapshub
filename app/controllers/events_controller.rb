@@ -6,7 +6,12 @@ class EventsController < ApplicationController
 
 # app/controllers/events_controller.rb
 def index
-  @events = Event.all
+  if params[:group_id]
+    @group = Group.find(params[:group_id])
+    @events = @group.events
+  else
+    @events = Event.all
+  end
 
   respond_to do |format|
     format.html
@@ -16,14 +21,13 @@ def index
           id: event.id,
           start: event.start_time.to_date.to_s,
           end: (event.end_time.to_date + 1).to_s,
-          title: '', # Empty so no text shows
-          url: Rails.application.routes.url_helpers.event_path(event)
+          title: '',
+          url: params[:group_id] ? group_event_path(@group, event) : event_path(event)
         }
       }
     end
   end
 end
-
 
 
   def show
