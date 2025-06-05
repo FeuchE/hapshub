@@ -1,14 +1,24 @@
 <section class="event-section">
-  <div class="group-card-wrapper">
-    <h1>Your Groups</h1>
-    <div class="event-scroll-container-vertical">
-      <% @groups.each do |group| %>
-        <%= render 'groups_index_card',
-          group: group,
-          name: group.name,
-          image_url: group.image_url
-        %>
-      <% end %>
+  <div class="card-container">
+
+    <!-- Back Button -->
+    <div class="back-button-aligned">
+      <%= link_to "Back", events_path, class: "back-link" %>
     </div>
+
+    <!-- Group Card -->
+    <div class="group-card-wrapper">
+      <h1>Your Groups</h1>
+      <div class="event-scroll-container-vertical">
+        <% @groups.each do |group| %>
+          <%= render 'groups_index_card',
+            group: group,
+            name: group.name,
+            image_url: group.image_url
+          %>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 </section>
