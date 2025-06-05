@@ -22,13 +22,13 @@ puts "Existing data wiped."
 # 1) A test user
 user = User.find_or_create_by!(email: 'user@username.com') do |u|
   u.password = 'password'
-  u.username = 'testuser'
+  u.username = 'Elle'
 end
 puts "User created/found: #{user.email}"
 
 user2 = User.find_or_create_by!(email: 'user2@username.com') do |u|
   u.password = 'password'
-  u.username = 'testuser2'
+  u.username = 'Mariana'
 end
 puts "User created/found: #{user2.email}"
 
