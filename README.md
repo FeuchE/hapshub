@@ -12,7 +12,7 @@ Introducing **HapsHub!** A full-stack app that helps groups plan social events b
 - 📆 **Duration:** 2 weeks 
 
 ---
-## 🧑‍🔬 💻  📐 📐✅  🖧 🖼️ 👥 🗺️ 🛠
+## 🧑‍🔬 💻  📐 📐✅  🖧 🖼️ 👥 🗺️ 🛠 💼 🎓 
 ## 📣 The pitch
 
 **The problem:**
