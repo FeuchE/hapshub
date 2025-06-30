@@ -10,14 +10,6 @@ Introducing HapsHub! A full-stack app that helps groups plan social events by su
 Dates: May 2025 - June 2025
 Duration: 2 weeks 
 
-### My contributions
-I pitched the idea, managed of a team of three and was lead developer for this exciting project.
-
-**Planning:** I mapped out the user journey, designed DB schema and Figma prototype.
-**Back-end:** I created the models, controller actions and views.
-**Front-end:** I styled the adventures index and show, and groups index pages.
-**Features:** I developed the search and delete features. 
-
 ### The pitch
 
 **The problem:**
